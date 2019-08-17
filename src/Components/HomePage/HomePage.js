@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import CreateDiscussions from "../CreateDiscussion/CreateDiscussion"
 import { Route, Link } from "react-router-dom"
-import "./styles.css";
+import "./HomePage.css";
 import Discussion from '../Discussion/Discussion';
-
+import Logo from "../Header/Logo/index"
 class HomePage extends Component {
       constructor(props) {
             super(props);
@@ -27,9 +27,11 @@ class HomePage extends Component {
                   )
             }
             return (
-                  <div id="main-container">
-                        <Discussion></Discussion>
-                        <Link to="/create">{createPostButton}</Link>
+                  <div style={{width: 100 + '%'}}>
+                        <div id="homepage-container">
+                              <Discussion></Discussion>
+                              <Link to="/create">{createPostButton}</Link>
+                        </div>
                   </div>
             );
 

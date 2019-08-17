@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import "./styles.css"
+import "./CreateDiscussion.css"
 import { Route, Link} from "react-router-dom"
 import HomePage from "../HomePage/HomePage"
 
@@ -25,8 +25,8 @@ export default class CreateDiscussion extends Component {
                   ) 
             }
             return (
-                  <div>
-                        <div className="container">
+                  <div style={{paddingTop: 5 + '%'}}>
+                        <div className="create-container">
                               <h2>Create a post</h2>
                               <input type="text" placeholder="Title" id="title"></input>
                               <textarea readOnly id="photo">Drag and drop or upload</textarea>

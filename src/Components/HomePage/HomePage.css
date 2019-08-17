@@ -1,7 +1,8 @@
-#main-container {
+#homepage-container {
       display: flex;
       flex-direction: row;
       justify-content: center;
+      padding-top: 5%;
 }
 #create-post-button{
       width: 15vw;

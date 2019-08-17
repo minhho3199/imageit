@@ -1,14 +1,19 @@
-import React from 'react';
-import logos from './logo.png'
-import './styles.css'
+import React, { Component } from 'react';
+import './Logo.css'
+import Navbar from '../Navbar/Navbar';
+class Logo extends Component {
+  render() {
+    return (
+      <div id="nav-container">
+        <div id="logo">
+          <h2 id="logo-title">ImageIt</h2>
+        </div>
+        <Navbar></Navbar>
+      </div>
 
-const Logo = () => {
- return (
-   <div className="logo">
-   <img src={logos} alt="a logo" />
-   </div>
- );
-};
+    );
+  };
+}
 
 export default Logo;
 

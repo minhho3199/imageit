@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import "./styles.css";
+import "./Discussion.css";
 import placeholderpic from "./placeholderpic.jpg"
 import placeholderpic2 from "./placeholderpic2.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faComment } from '@fortawesome/free-solid-svg-icons';
+
 class Discussion extends Component {
       constructor(props) {
             super(props);
