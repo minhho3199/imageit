@@ -6,6 +6,7 @@ import { faThumbsUp, faComment } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faThumbsUp, faComment);
 
+
 function App() {
   return (
     <div className="App">
