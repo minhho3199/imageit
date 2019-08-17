@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import "./styles.css"
 import { Route, Link} from "react-router-dom"
-import HomePage from "./HomePage"
+import HomePage from "../HomePage/HomePage"
 
 export default class CreateDiscussion extends Component {
       constructor(props) {

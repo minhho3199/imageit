@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import CreateDiscussions from "./CreateDiscussion"
+import CreateDiscussions from "../CreateDiscussion/CreateDiscussion"
 import { Route, Link } from "react-router-dom"
+import "./styles.css";
+import Discussion from '../Discussion/Discussion';
+
 class HomePage extends Component {
       constructor(props) {
             super(props);
@@ -24,14 +27,17 @@ class HomePage extends Component {
                   )
             }
             return (
-                  <Link to="/create">{createPostButton}</Link>
+                  <div id="main-container">
+                        <Discussion></Discussion>
+                        <Link to="/create">{createPostButton}</Link>
+                  </div>
             );
 
       }
 }
 function CreatePostButton(props) {
       return (
-            <button onClick={props.onClick}>Create Post</button>
+            <button onClick={props.onClick} id="create-post-button">Create Post</button>
 
       )
 }

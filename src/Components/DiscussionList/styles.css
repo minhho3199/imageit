@@ -1,0 +1,29 @@
+* {
+      font-family: sans-serif;
+}
+#list-header {
+      display: flex;
+      justify-content: space-around;
+      flex-direction: row;
+      align-items: center;
+}
+#container {
+      width: 70%;
+      background: white;
+      border: 1px solid lightgray;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+}
+#list-header h4 {
+      width: 45vw;
+      margin: 10px 0 10px 0;
+      color: #0079D3;
+}
+#sort {
+      display: flex;
+      justify-content: flex-end;
+      width: 20vw;
+}
+#sort a {
+      padding-left: 2.5vw;
+}
