@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Logo.css'
 import Navbar from '../Navbar/Navbar';
+import LogIn from '../../LogIn/LogIn';
 class Logo extends Component {
   render() {
     return (
@@ -16,4 +17,3 @@ class Logo extends Component {
 }
 
 export default Logo;
-
