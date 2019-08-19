@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link} from "react-router-dom"
-import './SignUp.css';
-import Navbar from "../Header/Navbar/Navbar";
+import './Signup.css';
 
 export default class SignUp extends Component {
       constructor(props) {
@@ -12,13 +10,19 @@ export default class SignUp extends Component {
 
       render() {
             return (
-                  <div>
+                  <div id="signup-page-container">
                         <div className="signup-container">
-                        <input type="text" placeholder="Username" id="username"></input>
-                        <input type="text" placeholder="Email" id="email"></input>
-                        <input type="text" placeholder="Password" id="password"></input>
-                              </div>
+                              <h2>Sign Up</h2>
+                              <form>
+                                    <input type="text" name="username" required placeholder="Enter your username"></input> <br/>
+                                    <input type="text" name="email" required placeholder="Enter your email"></input> <br/>
+                                    <input type="password" name="password" required placeholder="Enter your password"></input> <br/>
+                                    <input type="password" name="retype-password" required placeholder="Reenter your password"></input> <br/>
+                                    <button type="submit" id="signup-button">Sign Up</button>
+                              </form>
                         </div>
-            )
-      }
-}
+                  </div>
+                              )
+                        }
+                  }
+
