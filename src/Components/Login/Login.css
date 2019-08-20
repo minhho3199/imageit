@@ -20,7 +20,7 @@ input[type=text], input[type=password] {
       border: 1px solid lightgray;
 }
 #login-button {
-      align-text: center;
+      text-align: center;
       border: 1px solid #0079d3;
       border-radius: 4px;
       background: #0079d3;

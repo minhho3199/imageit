@@ -10,7 +10,7 @@
       padding: 10px 30px 10px 30px;
 }
 #log-in-button {
-      align-text: center;
+      text-align: center;
       border: 1px solid #0079d3;
       border-radius: 4px;
       background: #0079d3;
@@ -21,7 +21,7 @@
 }
 
 #sign-up-button {
-      align-text: center;
+      text-align: center;
       border: 1px solid #0079d3;
       border-radius: 4px;
       background: #0079d3;
