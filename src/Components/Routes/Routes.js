@@ -1,9 +1,9 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
-import Login from '../LogIn/LogIn';
+import Login from '../Login/Login';
 import CreateDiscussion from '../CreateDiscussion/CreateDiscussion';
-import Signup from '../SignUp/SignUp'
+import Signup from '../Signup/Signup'
 
 export default () =>
   <Switch>
