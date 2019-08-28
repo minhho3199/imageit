@@ -13,7 +13,7 @@ class HomePage extends Component {
                   <div style={{width: 100 + '%'}}>
                         <div id="homepage-container">
                               <Discussion></Discussion>
-                              <Link to="/create"><button id="create-post-button">Create Post</button></Link>
+                              <Link to="/create" id="create-post-container"><button id="create-post-button">Create Post</button></Link>
                         </div>
                   </div>
             );
