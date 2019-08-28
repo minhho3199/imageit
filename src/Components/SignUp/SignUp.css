@@ -18,9 +18,9 @@ input[type=text], input[type=password] {
       width: 25vw;
       border-radius: 5px;
       border: 1px solid lightgray;
-}
+}                     
 #signup-button {
-      align-text: center;
+      text-align: center;
       border: 1px solid #0079d3;
       border-radius: 4px;
       background: #0079d3;
