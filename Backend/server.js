@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const cors = require('cors');
+
 const app = express();
 const PORT = 5000;
-
+require('dotenv').config();
 //DB Config
 const users = require('./Modules/Api/Users/Router');
 
+app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 

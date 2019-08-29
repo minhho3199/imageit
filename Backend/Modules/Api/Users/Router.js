@@ -13,8 +13,8 @@ router.post('/register', (req, res) => {
             .then(user => {
                   // If user exists then error, else create new user
                   if (user) {
-                        return res.status(400).json({
-                              email: "Email already exists"
+                        return res.json({
+                              "error": "Email already exists",
                         });
                   } else {
                         const newUser = new User({
