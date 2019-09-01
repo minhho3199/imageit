@@ -10,7 +10,7 @@ class HomePage extends Component {
 
       render() {
             return (
-                  <div style={{width: 100 + '%'}}>
+                  <div style={{ width: 100 + '%' }}>
                         <div id="homepage-container">
                               <Discussion></Discussion>
                               <Link to="/create" id="create-post-container"><button id="create-post-button">Create Post</button></Link>

@@ -55,13 +55,13 @@ router.post('/login', (req, res) => {
                                     expiresIn: 1440
                               })
                               res.send(token);
-                        // If password doesn't match
+                              // If password doesn't match
                         } else {
-                              res.json({error: "Password is incorrect"});
+                              res.json({ error: "Password is incorrect" });
                         }
-                  // If email is not found
+                        // If email is not found
                   } else {
-                        res.json({error: "User does not exist"});
+                        res.json({ error: "User does not exist" });
                   }
             })
             .catch(err => {

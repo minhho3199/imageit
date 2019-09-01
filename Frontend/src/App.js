@@ -6,14 +6,13 @@ import Logo from "./Components/Header/Logo/Logo";
 import Routes from './Components/Routes/Routes';
 library.add(faThumbsUp, faComment);
 
-
 function App() {
-  return (
-    <div className="App">
-      <Logo></Logo>
-      <Routes />
-    </div>
-  )
+    return (
+      <div className="App">
+          <Logo></Logo>
+          <Routes />
+      </div>
+    )
 }
 
 export default App

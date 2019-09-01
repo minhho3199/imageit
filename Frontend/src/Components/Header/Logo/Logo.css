@@ -15,3 +15,6 @@
       margin: 5 auto;
       font-family: 'Montserrat', sans-serif;
 }
+#home-link {
+      text-decoration: none;
+}

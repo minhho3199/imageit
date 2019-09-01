@@ -13,38 +13,41 @@ export default class LogIn extends Component {
                   password: '',
             }
       }
+
       handleEmailChange(e) {
             this.setState({
                   email: e.target.value
             })
       }
-      
+
       handlePasswordChange(e) {
             this.setState({
                   password: e.target.value
             })
       }
+
       handleSubmit(e) {
             e.preventDefault();
             axios.post("http://localhost:5000/api/users/login", {
                   email: this.state.email,
                   password: this.state.password,
             })
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
+                  .then(data => console.log(data))
+                  .catch(err => console.log(err))
       }
+
       render() {
             return (
                   <div id="login-page-container">
                         <div className="login-container">
                               <h2>Log In</h2>
                               <form onSubmit={this.handleSubmit}>
-                                    <input type="email" name="email" required placeholder="Enter your email" onChange={this.handleEmailChange}></input> <br/>
-                                    <input type="password" name="password" required placeholder="Enter your password" onChange={this.handlePasswordChange}></input> <br/>
+                                    <input type="email" name="email" required placeholder="Enter your email" onChange={this.handleEmailChange}></input> <br />
+                                    <input type="password" name="password" required placeholder="Enter your password" onChange={this.handlePasswordChange}></input> <br />
                                     <button type="submit" id="login-button">Log in</button>
                               </form>
                         </div>
                   </div>
-                              )
-                        }
-                  }
+            )
+      }
+}

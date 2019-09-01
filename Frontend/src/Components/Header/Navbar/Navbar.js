@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import './Navbar.css';
 
-class Navbar extends Component {
+export default class Navbar extends Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     return (
@@ -18,4 +17,3 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
