@@ -1,0 +1,24 @@
+#homepage-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding-top: 5%;
+}
+#create-post-container {
+      height: 100%;
+}
+#create-post-button{
+      width: 15vw;
+      text-align: center;
+      border: 1px solid #0079d3;
+      border-radius: 4px;
+      background: #0079d3;
+      color: white;
+      padding: 10px;
+      margin-left: 10px;     
+      transition: 0.3s;
+}
+#create-post-button:hover {
+      cursor: pointer;
+      filter:brightness(120%);
+}
