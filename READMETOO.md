@@ -1,0 +1,5 @@
+-	We have separated the Frontend and Backend into two different folders to easily distinguish the two
+-	Components for the front-end have been separated from the source files in the folder Components, and each component inside is also separated into their own folders (Eg. Login has it’s own Login folder, Signup has it’s own Signup folder)
+-	The components all have their own js file and their own css file to help group members as well as others who read the code get a better understanding of how that component is styled and overall improve readability
+-	Aside from the source files that is created using create-react-app, all other folders and files will be named with an uppercase letter at the start.
+-	The program follows the horizontal indent style of 4 spaces, making it easier to read and comprehend
