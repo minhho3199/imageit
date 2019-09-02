@@ -3,3 +3,8 @@
 -	The components all have their own js file and their own css file to help group members as well as others who read the code get a better understanding of how that component is styled and overall improve readability
 -	Aside from the source files that is created using create-react-app, all other folders and files will be named with an uppercase letter at the start.
 -	The program follows the horizontal indent style of 4 spaces, making it easier to read and comprehend
+-	Functions are separated with a line of white space as to increase readability and helps everyone easily differentiate between the different functions.
+- Imports for React all reside at the top of the file and are separated from the main content with a line of white space
+- In terms of the Backend, the APIs has also been separated to increase modularity, readability and usability. 
+- The APIs have also been separated as separate entities (Users have their own Users file) which holds their schema and their routes 
+- All functions will follow the camel case naming convention to provide a consistent look to the code
