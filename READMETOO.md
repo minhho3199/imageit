@@ -8,3 +8,8 @@
 - In terms of the Backend, the APIs has also been separated to increase modularity, readability and usability. 
 - The APIs have also been separated as separate entities (Users have their own Users file) which holds their schema and their routes 
 - All functions will follow the camel case naming convention to provide a consistent look to the code
+-	Css files also have the common indentation space of 4 spaces so as to provide consistency
+-	Constant declarations, middleware and the actual code in express files are clearly separated for easy differentiation
+-	The use of an ODM framework like Mongoose for MongoDB is to provide team members with schemas so documents follow a specific structure with pre-defined value types, among other benefits.
+-	In the Components folder for the front-end, there is a Routes folder which holds all the routes for the website. This makes it so that routes will not need to be coded into the specific components that need them and will only need to refer to the routes in the Routes.js file. This increases efficiency, usability as well as understandability and makes the components less cluttered.
+-	Because the front-end and back-end are separated, all packages that are used for either the backend or the frontend will be separated as well
