@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Signup.css';
 import axios from 'axios';
 
-export default class SignUp extends Component {
+export default class Signup extends Component {
       constructor(props) {
             super(props);
             this.handleNameChange = this.handleNameChange.bind(this);
@@ -15,7 +15,6 @@ export default class SignUp extends Component {
                   email: "",
                   password: "",
                   password2: "",
-                  redirectToLogin: false
 
             }
       }
@@ -58,8 +57,15 @@ export default class SignUp extends Component {
                         email: this.state.email,
                         password: this.state.password,
                   })
-                        .then(data => console.log(data))
-                        .catch(err => console.log(err))
+                        .then(data => {
+                              if(data.status === 200 && data.statusText === "OK") {
+                                    this.props.history.push("/login");
+                              }
+                        })
+                        .catch(err => {
+                              console.log(err);
+                              alert("Register unsuccessful");
+                        })
             }
 
       }

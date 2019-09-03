@@ -13,7 +13,7 @@ router.post('/register', (req, res) => {
             .then(user => {
                   // If user exists then error, else create new user
                   if (user) {
-                        return res.json({
+                        return res.status(400).json({
                               "error": "Email already exists",
                         });
                   } else {
@@ -57,11 +57,11 @@ router.post('/login', (req, res) => {
                               res.send(token);
                               // If password doesn't match
                         } else {
-                              res.json({ error: "Password is incorrect" });
+                              res.status(400).json({ error: "Password is incorrect" });
                         }
                         // If email is not found
                   } else {
-                        res.json({ error: "User does not exist" });
+                        res.status(400).json({ error: "User does not exist" });
                   }
             })
             .catch(err => {

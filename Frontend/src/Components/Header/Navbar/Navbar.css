@@ -9,7 +9,7 @@
       font-size: 1.25em;
       padding: 10px 30px 10px 30px;
 }
-#log-in-button {
+.login-register-button {
       text-align: center;
       border: 1px solid #0079d3;
       border-radius: 4px;
@@ -17,25 +17,10 @@
       color: white;
       padding: 10px;
       margin-left: 10px;
-      transition: 0.3s;
+      transition: 0.3s; 
 }
-
-#sign-up-button {
-      text-align: center;
-      border: 1px solid #0079d3;
-      border-radius: 4px;
-      background: #0079d3;
-      color: white;
-      padding: 10px;
-      margin-left: 10px;
-      transition: 0.3s;
-}
-
-#log-in-button:hover {
+.login-register-button:hover {
       cursor: pointer;
       filter:brightness(120%);
 }
-#sign-up-button:hover {
-      cursor: pointer;
-      filter:brightness(120%);
-}
+

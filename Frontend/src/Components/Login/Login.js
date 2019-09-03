@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Login.css';
 
-export default class LogIn extends Component {
+class Login extends Component {
       constructor(props) {
             super(props);
             this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -32,7 +32,10 @@ export default class LogIn extends Component {
                   email: this.state.email,
                   password: this.state.password,
             })
-                  .then(data => console.log(data))
+                  .then(res => {
+                        localStorage.setItem('usertoken', res.data);
+                        this.props.history.push("/home");
+                  })
                   .catch(err => console.log(err))
       }
 
@@ -51,3 +54,4 @@ export default class LogIn extends Component {
             )
       }
 }
+export default Login;
