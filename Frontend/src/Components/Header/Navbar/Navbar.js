@@ -2,47 +2,59 @@ import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom"
 import './Navbar.css';
 import jwt_decode from 'jwt-decode';
-
+import Logo from '../Logo/Logo'
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.logOut = this.logOut.bind(this);
     this.state = {
-      name: ""
+      name: '',
+      intervalId: 0,
     }
   }
 
   logOut(e) {
     e.preventDefault();
     localStorage.removeItem('usertoken');
-    this.props.history.push("/");
+    this.setState({
+      name: "",
+      intervalId: 0
+    }, () => {
+      this.props.history.push("/");
+    })
   }
 
   componentDidMount() {
-    const token = localStorage.usertoken;
-    if (token) {
-      const decoded = jwt_decode(token);
-      this.setState({
-        name: decoded.name
-      })
-    }
+        const token = localStorage.usertoken;
+        console.log(token);
+        if (token) {
+          const decoded = jwt_decode(token);
+          this.setState({
+            name: decoded.name,
+          }, () => {
+            console.log(this.state.name)
+
+          })
+        }
   }
+
+
   render() {
     const loginRegLink = (
-      <div>
-        <Link to="/login"><button className="login-register-button">Login</button></Link>
-        <Link to="/signup"><button className="login-register-button">Signup</button></Link>
+      <div id="navbar">
+        <Link to="/login" className="button-link"><button className="login-register-button">Login</button></Link>
+        <Link to="/signup" className="button-link"><button className="login-register-button">Signup</button></Link>
       </div>
     )
     const userLink = (
-      <div>
+      <div id="navbar">
         <button className="login-register-button">{this.state.name}</button>
-        {/* <p>{this.state.name}</p> */}
-        <button className="login-register-button" onClick={this.logOut}>Logout</button>
+        <button className="login-register-button button-link" onClick={this.logOut}>Logout</button>
       </div>
     )
     return (
-      <div id="navbar">
+      <div id="nav-container">
+        <Logo></Logo>
         {localStorage.usertoken ? userLink : loginRegLink}
       </div>
     );

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Logo from '../Header/Logo/Logo';
+import Navbar from "../Header/Navbar/Navbar"
 import './LandingPage.css'
 class LandingPage extends Component {
     constructor(props) {
@@ -9,7 +9,7 @@ class LandingPage extends Component {
     render() {
         return (
             <div>
-                <Logo />
+                <Navbar />
                 <div id="landing-title">
                     <h1>Welcome to ImageIt</h1>
                 </div>

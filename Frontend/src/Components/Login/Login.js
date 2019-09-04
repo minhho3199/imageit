@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Login.css';
-
+import Navbar from '../Header/Navbar/Navbar'
 class Login extends Component {
       constructor(props) {
             super(props);
@@ -34,21 +34,26 @@ class Login extends Component {
             })
                   .then(res => {
                         localStorage.setItem('usertoken', res.data);
-                        this.props.history.push("/home");
+                  })
+                  .then(() => {
+                        this.props.history.push('/home');
                   })
                   .catch(err => console.log(err))
       }
 
       render() {
             return (
-                  <div id="login-page-container">
-                        <div className="login-container">
-                              <h2>Log In</h2>
-                              <form onSubmit={this.handleSubmit}>
-                                    <input type="email" name="email" required placeholder="Enter your email" onChange={this.handleEmailChange}></input> <br />
-                                    <input type="password" name="password" required placeholder="Enter your password" onChange={this.handlePasswordChange}></input> <br />
-                                    <button type="submit" id="login-button">Log in</button>
-                              </form>
+                  <div>
+                        <Navbar />
+                        <div id="login-page-container">
+                              <div className="login-container">
+                                    <h2>Log In</h2>
+                                    <form onSubmit={this.handleSubmit}>
+                                          <input type="email" name="email" required placeholder="Enter your email" onChange={this.handleEmailChange}></input> <br />
+                                          <input type="password" name="password" required placeholder="Enter your password" onChange={this.handlePasswordChange}></input> <br />
+                                          <button type="submit" id="login-button">Log in</button>
+                                    </form>
+                              </div>
                         </div>
                   </div>
             )

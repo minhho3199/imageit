@@ -1,13 +1,18 @@
+#nav-container {
+      display: flex;
+      background: white;
+      position: fixed;
+      justify-content: space-evenly;
+      width: 100%;
+}
 #navbar {
       width: 30%;
       display: flex;
       justify-content: flex-end;
       align-items: center;
 }
-.nav-link {
-      text-decoration: none;
-      font-size: 1.25em;
-      padding: 10px 30px 10px 30px;
+.button-link {
+      margin-left: 10px;
 }
 .login-register-button {
       text-align: center;
@@ -16,7 +21,7 @@
       background: #0079d3;
       color: white;
       padding: 10px;
-      margin-left: 10px;
+      
       transition: 0.3s; 
 }
 .login-register-button:hover {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Signup.css';
+import Navbar from '../Header/Navbar/Navbar'
 import axios from 'axios';
 
 export default class Signup extends Component {
@@ -58,7 +59,7 @@ export default class Signup extends Component {
                         password: this.state.password,
                   })
                         .then(data => {
-                              if(data.status === 200 && data.statusText === "OK") {
+                              if (data.status === 200 && data.statusText === "OK") {
                                     this.props.history.push("/login");
                               }
                         })
@@ -72,16 +73,19 @@ export default class Signup extends Component {
 
       render() {
             return (
-                  <div id="signup-page-container">
-                        <div className="signup-container">
-                              <h2>Sign Up</h2>
-                              <form onSubmit={this.handleSubmit}>
-                                    <input type="text" required placeholder="Enter your name" onChange={this.handleNameChange}></input> <br />
-                                    <input type="email" required placeholder="Enter your email" onChange={this.handleEmailChange}></input> <br />
-                                    <input type="password" required placeholder="Enter your password" onChange={this.handlePasswordChange}></input> <br />
-                                    <input type="password" required placeholder="Reenter your password" onChange={this.handlePassword2Change}></input> <br />
-                                    <button type="submit" id="signup-button">Sign Up</button>
-                              </form>
+                  <div>
+                        <Navbar />
+                        <div id="signup-page-container">
+                              <div className="signup-container">
+                                    <h2>Sign Up</h2>
+                                    <form onSubmit={this.handleSubmit}>
+                                          <input type="text" required placeholder="Enter your name" onChange={this.handleNameChange}></input> <br />
+                                          <input type="email" required placeholder="Enter your email" onChange={this.handleEmailChange}></input> <br />
+                                          <input type="password" required placeholder="Enter your password" onChange={this.handlePasswordChange}></input> <br />
+                                          <input type="password" required placeholder="Reenter your password" onChange={this.handlePassword2Change}></input> <br />
+                                          <button type="submit" id="signup-button">Sign Up</button>
+                                    </form>
+                              </div>
                         </div>
                   </div>
             )

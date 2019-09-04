@@ -1,18 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faThumbsUp, faComment } from '@fortawesome/free-solid-svg-icons'
-import Logo from "./Components/Header/Logo/Logo";
+import Navbar from './Components/Header/Navbar/Navbar'
 import Routes from './Components/Routes/Routes';
 library.add(faThumbsUp, faComment);
 
-function App() {
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
+  render() {
     return (
       <div className="App">
-          <Logo></Logo>
-          <Routes />
+        <Routes />
       </div>
-    )
+    );
+  }
 }
 
 export default App
