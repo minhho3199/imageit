@@ -9,7 +9,6 @@ class Navbar extends Component {
     this.logOut = this.logOut.bind(this);
     this.state = {
       name: '',
-      intervalId: 0,
     }
   }
 
@@ -18,7 +17,6 @@ class Navbar extends Component {
     localStorage.removeItem('usertoken');
     this.setState({
       name: "",
-      intervalId: 0
     }, () => {
       this.props.history.push("/");
     })
@@ -26,14 +24,10 @@ class Navbar extends Component {
 
   componentDidMount() {
         const token = localStorage.usertoken;
-        console.log(token);
         if (token) {
           const decoded = jwt_decode(token);
           this.setState({
             name: decoded.name,
-          }, () => {
-            console.log(this.state.name)
-
           })
         }
   }

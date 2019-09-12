@@ -9,6 +9,11 @@ export default class CreateDiscussion extends Component {
             this.state = {}
       }
 
+      componentDidMount() {
+            if(!("usertoken" in localStorage)) {
+                  this.props.history.push("/");
+            }
+      }
       render() {
             return (
                   <div>

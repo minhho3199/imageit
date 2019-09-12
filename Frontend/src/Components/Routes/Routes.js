@@ -5,7 +5,6 @@ import Login from '../Login/Login';
 import CreateDiscussion from '../CreateDiscussion/CreateDiscussion';
 import Signup from '../Signup/Signup'
 import LandingPage from "../LandingPage/LandingPage";
-import Navbar from '../Header/Navbar/Navbar';
 
 class Routes extends Component {
   constructor(props) {
@@ -16,11 +15,11 @@ class Routes extends Component {
     return (
       <div>
         <Switch>
-          <Route path="/" exact component={LandingPage} />
-          <Route path="/home" exact component={HomePage} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/create" exact component={CreateDiscussion} />
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/home" component={HomePage} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/create" component={CreateDiscussion} />
         </Switch>
       </div>
     )

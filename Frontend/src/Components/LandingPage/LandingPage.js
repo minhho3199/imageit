@@ -6,6 +6,11 @@ class LandingPage extends Component {
         super(props);
         this.state = {}
     }
+    componentDidMount() {
+        if("usertoken" in localStorage) {
+            this.props.history.push("/home");
+      }
+    }
     render() {
         return (
             <div>

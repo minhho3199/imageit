@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Login.css';
-import Navbar from '../Header/Navbar/Navbar'
+import Navbar from '../Header/Navbar/Navbar';
 class Login extends Component {
       constructor(props) {
             super(props);
@@ -13,7 +13,11 @@ class Login extends Component {
                   password: '',
             }
       }
-
+      componentDidMount() {
+            if("usertoken" in localStorage) {
+                  this.props.history.push("/home");
+            }
+      }
       handleEmailChange(e) {
             this.setState({
                   email: e.target.value

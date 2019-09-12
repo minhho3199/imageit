@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
+const validateRegisterInput = require("../../../Validation/Register");
+const validateLoginInput = require("../../../Validation/Login");
 const User = require('./User');
 require('dotenv').config();
 
@@ -35,7 +37,6 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-      // Check if email exists in database
       User.findOne({
             email: req.body.email
       })

@@ -8,6 +8,11 @@ class HomePage extends Component {
             super(props);
       }
 
+      componentDidMount() {
+            if(!("usertoken" in localStorage)) {
+                  this.props.history.push("/");
+            }
+      }
       render() {
             return (
                   <div style={{ width: 100 + '%' }}>
