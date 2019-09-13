@@ -9,8 +9,11 @@
       width: 30%;
       border-radius: 10px;
 }
+.signup-container h2 {
+      margin: 5% 0 5% 0;
+}
 #signup-page-container {
-      padding-top: 15%;
+      padding-top: 10%;
 }
 input[type=text], input[type=password], input[type=email] {
       margin: 1rem 0 1rem 0;
