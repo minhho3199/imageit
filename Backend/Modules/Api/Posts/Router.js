@@ -26,7 +26,7 @@ router.post("/create", auth, upload.single("image"), (req, res) => {
 })
 
 router.get("/", (req, res) => {
-    Post.findOne({}, (err, img) => {
+    Post.find({}, (err, img) => {
         if(err) {
             res.send(err);
         }
