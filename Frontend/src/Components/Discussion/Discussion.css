@@ -19,6 +19,7 @@
 .picture {
       display: block;
       max-height: 512px;
+      max-width: 100%;
 }
 .pic-container {
       display: flex;

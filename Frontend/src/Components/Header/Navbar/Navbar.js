@@ -7,6 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import './Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    
+
     const token = localStorage.usertoken;
     if (token) {
       const decoded = jwt_decode(token);
@@ -40,7 +41,7 @@ class Navbar extends Component {
       })
     }
   }
-  
+
   showMenu(e) {
     e.preventDefault();
     this.setState({
@@ -67,8 +68,9 @@ class Navbar extends Component {
         <DropdownButton id="dropdown-basic-button " className="dropdown-button" title={this.state.name + " "} onClick={this.showMenu}>
           {this.state.showMenu ? (
             <div>
-              <Dropdown.Item href="#/action-1" id="dropdown-items"><FontAwesomeIcon icon={faUser} />&nbsp;&nbsp; My Profile</Dropdown.Item>
-              <Dropdown.Item onClick={this.logOut} id="dropdown-items"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;&nbsp; Logout</Dropdown.Item>
+              <Link to="/profile" id="profile-link"><Dropdown.Item as="button" id="dropdown-items">
+                <FontAwesomeIcon icon={faUser} />&nbsp;&nbsp; My Profile</Dropdown.Item></Link>
+              <Dropdown.Item as="button" onClick={this.logOut} id="dropdown-items"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;&nbsp; Logout</Dropdown.Item>
             </div>
           ) : (null)}
         </DropdownButton>

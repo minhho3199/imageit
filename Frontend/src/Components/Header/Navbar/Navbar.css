@@ -37,6 +37,9 @@
 .button-link {
       margin-left: 10px;
 }
+#profile-link {
+      text-decoration: none;
+}
 .dropdown-button button{
       background-color: white;
       color: black;

@@ -51,7 +51,7 @@ router.post('/login', (req, res) => {
                               // Sign the payload
                               let token = jwt.sign(payload, process.env.SECRET_KEY, {
                                     // Time until log in expires
-                                    expiresIn: 1440
+                                    expiresIn: 60
                               })
                               res.send(token);
                               // If password doesn't match
