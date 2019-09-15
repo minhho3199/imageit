@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Login.css';
 import Navbar from '../Header/Navbar/Navbar';
+
 class Login extends Component {
       constructor(props) {
             super(props);
@@ -11,6 +12,7 @@ class Login extends Component {
             this.state = {
                   email: '',
                   password: '',
+                  fail: '',
             }
       }
       componentDidMount() {
@@ -43,7 +45,12 @@ class Login extends Component {
                   .then(() => {
                         this.props.history.push('/home');
                   })
-                  .catch(err => console.log(err))
+                  .catch(err => {
+                        console.log(err);
+                        this.setState({
+                              fail: 'Login unsuccessful'
+                        })
+                  })
       }
 
       render() {
@@ -56,6 +63,7 @@ class Login extends Component {
                                     <form onSubmit={this.handleSubmit}>
                                           <input type="email" name="email" required placeholder="Enter your email" onChange={this.handleEmailChange}></input> <br />
                                           <input type="password" name="password" required placeholder="Enter your password" onChange={this.handlePasswordChange}></input> <br />
+                                          <span className="error-text">{this.state.fail}</span> <br/>
                                           <button type="submit" id="login-button">Log in</button>
                                     </form>
                               </div>
