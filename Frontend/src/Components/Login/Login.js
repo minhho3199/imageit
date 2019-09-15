@@ -38,6 +38,7 @@ class Login extends Component {
             })
                   .then(res => {
                         localStorage.setItem('usertoken', res.data);
+                        localStorage.setItem('setTime', new Date().getTime());
                   })
                   .then(() => {
                         this.props.history.push('/home');

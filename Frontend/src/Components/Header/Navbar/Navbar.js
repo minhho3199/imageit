@@ -16,14 +16,13 @@ class Navbar extends Component {
     this.logOut = this.logOut.bind(this);
     this.state = {
       name: '',
-      showMenu: false,
-      _isMounted: false
     }
   }
 
   logOut(e) {
     e.preventDefault();
     localStorage.removeItem('usertoken');
+    localStorage.removeItem('setTime');
     this.setState({
       name: "",
     }, () => {
@@ -34,14 +33,24 @@ class Navbar extends Component {
   componentDidMount() {
 
     const token = localStorage.usertoken;
-    if (token) {
-      const decoded = jwt_decode(token);
-      this.setState({
-        name: decoded.name,
-      })
-    }
+    var hours = 1;
+    var now = new Date().getTime();
+    const setTime = localStorage.setTime;
+    if (token && setTime) {
+      if (now - setTime > hours * 60 * 60 * 1000) {
+        localStorage.removeItem('usertoken');
+        localStorage.removeItem('setTime');
+        this.setState({
+          name: '',
+        })
+      } else {
+        const decoded = jwt_decode(token);
+        this.setState({
+          name: decoded.name,
+        })
+      }
+    } 
   }
-
   showMenu(e) {
     e.preventDefault();
     this.setState({
@@ -65,14 +74,10 @@ class Navbar extends Component {
     )
     const userLink = (
       <div id="navbar-after">
-        <DropdownButton id="dropdown-basic-button " className="dropdown-button" title={this.state.name + " "} onClick={this.showMenu}>
-          {this.state.showMenu ? (
-            <div>
-              <Link to="/profile" id="profile-link"><Dropdown.Item as="button" id="dropdown-items">
-                <FontAwesomeIcon icon={faUser} />&nbsp;&nbsp; My Profile</Dropdown.Item></Link>
-              <Dropdown.Item as="button" onClick={this.logOut} id="dropdown-items"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;&nbsp; Logout</Dropdown.Item>
-            </div>
-          ) : (null)}
+        <DropdownButton id="dropdown-basic-button " className="dropdown-button" title={this.state.name + " "}>
+          <Link to="/profile" id="profile-link"><Dropdown.Item as="button" id="dropdown-items">
+            <FontAwesomeIcon icon={faUser} />&nbsp;&nbsp; My Profile</Dropdown.Item></Link>
+          <Dropdown.Item as="button" onClick={this.logOut} id="dropdown-items"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;&nbsp; Logout</Dropdown.Item>
         </DropdownButton>
       </div>
     )
