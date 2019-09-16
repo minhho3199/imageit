@@ -25,11 +25,11 @@ export default class CreateDiscussion extends Component {
                                     <form>
                                           <input type="text" placeholder="Title" id="title"></input>
                                           <Dropzone onDrop={this.onDrop}>
-                                                {({ getRootProps, getInputProps, isDragctive }) => (
+                                                {({ getRootProps, getInputProps, isDragActive }) => (
                                                       <div {...getRootProps()}>
                                                             <input {...getInputProps()} />
-                                                            Click me to upload a file!
-                                                  </div>
+                                                            {isDragActive ? "Drop it like it's hot!" : 'Click me or drag a file to upload!'}
+                                                      </div>
                                                 )}
                                           </Dropzone>
                                           <div id="button-container">
