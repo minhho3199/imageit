@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import Navbar from '../Header/Navbar/Navbar'
 import Dropzone from 'react-dropzone'
 import axios from 'axios';
+import jwt_decode from 'jwt-decode'
+
 export default class CreateDiscussion extends Component {
       constructor(props) {
             super(props);
@@ -13,6 +15,7 @@ export default class CreateDiscussion extends Component {
             this.state = {
                   title: '',
                   image: null,
+                  userId: '',
             }
       }
 
@@ -21,6 +24,12 @@ export default class CreateDiscussion extends Component {
                   this.props.history.push("/");
             } else {
                   const token = localStorage.usertoken;
+                  if (token) {
+                        const decoded = jwt_decode(token);
+                        this.setState({
+                              userId: decoded.id,
+                        }, console.log(this.state.userId));
+                  }
             }
       }
       handleTitleChange(e) {
@@ -41,14 +50,18 @@ export default class CreateDiscussion extends Component {
             var config = {
                   headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': token
+                        'Authorization': token,
                   },
             };
             const fd = new FormData();
             fd.append('title', this.state.title);
             fd.append('image', this.state.image);
+            fd.append('author', this.state.userId);
             axios.post('http://localhost:5000/api/posts/create', fd, config)
-                  .then(data => console.log(data))
+                  .then(result => {
+                        console.log(result);
+                  })
+                  .then(() => this.props.history.push('/home'))
                   .catch(err => console.log(err))
       }
       render() {

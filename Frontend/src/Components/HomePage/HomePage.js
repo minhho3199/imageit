@@ -19,7 +19,9 @@ class HomePage extends Component {
                         <Navbar></Navbar>
                         <div id="homepage-container">
                               <Discussion></Discussion>
+                              <div id="sidebar-container">
                               <Link to="/create" id="create-post-container"><button id="create-post-button">Create Post</button></Link>
+                              </div>
                               
                         </div>
                   </div>

@@ -23,7 +23,6 @@ class Discussion extends Component {
             fetch("http://localhost:5000/api/posts/")
                   .then(res => res.json())
                   .then(data => {
-                        console.log(data);
                         this.setState({
                               posts: data,
                         })
@@ -41,7 +40,7 @@ class Discussion extends Component {
                                           <h3 className="title">{post.title}</h3>
                                     </div>
                                     <div className="posted-by-container">
-                                          <span>by </span>
+                                          <span>by <em>{post.author.name}</em></span>
                                     </div>
                                     <div className="pic-container">
                                           <img src={base64Flag + this.arrayBufferToBase64(post.image.data)} className="picture"></img>

@@ -18,7 +18,7 @@ const UserSchema = new Schema({
       date: {
             type: Date,
             default: Date.now,
-      }
+      },
 });
 
 //Export the Schema so that it can be used outside

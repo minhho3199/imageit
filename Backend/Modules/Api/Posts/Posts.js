@@ -19,7 +19,12 @@ const PostSchema = new Schema({
         type: String,
         required: true,
     },
-    // createBy: {type: Schema.Types.ObjectId, ref: "users", required: true},
+    author: 
+    {
+        type: Schema.Types.ObjectId, 
+        ref: "users",
+        required: true,
+    },
     active: {
         type: Boolean,
         default: true,

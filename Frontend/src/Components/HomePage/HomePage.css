@@ -6,6 +6,7 @@
 }
 #create-post-container {
       height: 100%;
+      margin-left: 15px;
 }
 #create-post-button{
       width: 15vw;
@@ -14,8 +15,7 @@
       border-radius: 4px;
       background: #0079d3;
       color: white;
-      padding: 10px;
-      margin-left: 10px;     
+      padding: 10px;  
       transition: 0.3s;
 }
 #create-post-button:hover {

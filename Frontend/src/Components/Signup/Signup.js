@@ -27,7 +27,7 @@ export default class Signup extends Component {
                   this.setState({
                         passLength: "Password must be at least 6 characters",
                   })
-            } else if (password.length >= 6) {
+            } else if (password.length > 6 || password.length == 6) {
                   this.setState({
                         passLength: "",
                   })
