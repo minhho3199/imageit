@@ -24,16 +24,26 @@ export default class CreateDiscussion extends Component {
                                     <h2>Create a post</h2>
                                     <form>
                                           <input type="text" placeholder="Title" id="title"></input>
-                                          <Dropzone onDrop={this.onDrop}
-                                                accept="image/png, image/jpeg, image/gif">
-                                                {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-                                                      <div {...getRootProps()}>
-                                                            <input {...getInputProps()} />
-                                                            {!isDragActive && 'Click here or drop a file to upload!'}
-                                                            {isDragActive && !isDragReject && "Drop it like it's hot!"}
-                                                            {isDragReject && "File type not accepted, sorry!"}
-                                                      </div>
-                                                )}
+                                          <Dropzone className="upload" onDrop={this.onDrop}
+                                                accept="image/png, image/jpeg, image/gif"
+                                                minSize={0}>
+                                                {({ getRootProps, getInputProps, isDragActive, isDragReject, rejectedFiles }) => {
+                                                      const isFileTooLarge = rejectedFiles.length > 0;
+                                                      return (
+                                                            <div {...getRootProps()}>
+                                                                  <input {...getInputProps()} />
+                                                                  {!isDragActive && 'Click here or drop a file to upload!'}
+                                                                  {isDragActive && !isDragReject && "Drop it like it's hot!"}
+                                                                  {isDragReject && "File type not accepted, sorry!"}
+                                                                  {isFileTooLarge && (
+                                                                        <div className="text-danger mt-2">
+                                                                              File is too large.
+                </div>
+                                                                  )}
+                                                            </div>
+                                                      )
+                                                }
+                                                }
                                           </Dropzone>
                                           <div id="button-container">
                                                 <Link to="/home" className="link"><button className="button" id="cancel">Cancel</button></Link>
