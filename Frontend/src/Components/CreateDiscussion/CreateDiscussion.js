@@ -3,44 +3,81 @@ import "./CreateDiscussion.css"
 import { Link } from "react-router-dom"
 import Navbar from '../Header/Navbar/Navbar'
 import Dropzone from 'react-dropzone'
+import axios from 'axios';
 export default class CreateDiscussion extends Component {
       constructor(props) {
             super(props);
-            this.state = {}
+            this.handleTitleChange = this.handleTitleChange.bind(this);
+            this.handleFileChange = this.handleFileChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+            this.state = {
+                  title: '',
+                  image: null,
+            }
       }
 
       componentDidMount() {
             if (!("usertoken" in localStorage)) {
                   this.props.history.push("/");
+            } else {
+                  const token = localStorage.usertoken;
             }
       }
-
-
+      handleTitleChange(e) {
+            this.setState({
+                  title: e.target.value,
+            })
+      }
+      handleFileChange(e) {
+            this.setState({
+                  image: e.target.files[0],
+            }, () => {
+                  console.log(this.state.image);
+            })
+      }
+      handleSubmit(e) {
+            e.preventDefault();
+            const token = localStorage.usertoken;
+            var config = {
+                  headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': token
+                  },
+            };
+            const fd = new FormData();
+            fd.append('title', this.state.title);
+            fd.append('image', this.state.image);
+            axios.post('http://localhost:5000/api/posts/create', fd, config)
+                  .then(data => console.log(data))
+                  .catch(err => console.log(err))
+      }
       render() {
+            const maxSize = 5242880;
             return (
                   <div>
                         <Navbar></Navbar>
                         <div style={{ paddingTop: 5 + '%' }}>
                               <div className="create-container">
                                     <h2>Create a post</h2>
-                                    <form className="upload-form">
-                                          <input type="text" placeholder="Title" id="title"></input>
+                                    <form className="upload-form" onSubmit={this.handleSubmit}>
+                                          <input type="text" placeholder="Title" id="title" required onChange={this.handleTitleChange}></input>
                                           <Dropzone onDrop={this.onDrop}
                                                 accept="image/png, image/jpeg, image/gif"
+                                                multiple={false}
                                                 minSize={0}
-                                                >
+                                                maxSize={maxSize}>
                                                 {({ getRootProps, getInputProps, isDragActive, isDragReject, rejectedFiles }) => {
-                                                      const isFileTooLarge = rejectedFiles.length > 0;
+                                                      const isFileTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;
                                                       return (
                                                             <div {...getRootProps()} className="upload">
-                                                                  <input {...getInputProps()} />
+                                                                  <input {...getInputProps()} onChange={this.handleFileChange} required />
                                                                   {!isDragActive && 'Click here or drop a file to upload!'}
                                                                   {isDragActive && !isDragReject && "Drop it like it's hot!"}
                                                                   {isDragReject && "File type not accepted, sorry!"}
                                                                   {isFileTooLarge && (
                                                                         <div className="text-danger mt-2">
                                                                               File is too large.
-                </div>
+                                                                        </div>
                                                                   )}
                                                             </div>
                                                       )
@@ -52,7 +89,6 @@ export default class CreateDiscussion extends Component {
                                                 <button className="button" id="submit">Submit</button>
                                           </div>
                                     </form>
-
                               </div>
                         </div>
                   </div>
