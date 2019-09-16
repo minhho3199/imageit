@@ -4,10 +4,6 @@ import "./HomePage.css";
 import Discussion from '../Discussion/Discussion';
 import Navbar from '../Header/Navbar/Navbar'
 class HomePage extends Component {
-      constructor(props) {
-            super(props);
-      }
-
       componentDidMount() {
             if(!("usertoken" in localStorage)) {
                   this.props.history.push("/");

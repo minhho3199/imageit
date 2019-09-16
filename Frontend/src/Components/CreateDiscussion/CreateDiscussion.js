@@ -10,8 +10,8 @@ export default class CreateDiscussion extends Component {
       constructor(props) {
             super(props);
             this.handleTitleChange = this.handleTitleChange.bind(this);
-            this.handleFileChange = this.handleFileChange.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
+            this.onDrop = this.onDrop.bind(this);
             this.state = {
                   title: '',
                   image: null,
@@ -37,11 +37,9 @@ export default class CreateDiscussion extends Component {
                   title: e.target.value,
             })
       }
-      handleFileChange(e) {
+      onDrop(files) {
             this.setState({
-                  image: e.target.files[0],
-            }, () => {
-                  console.log(this.state.image);
+                  image: files[0]
             })
       }
       handleSubmit(e) {
@@ -64,6 +62,7 @@ export default class CreateDiscussion extends Component {
                   .then(() => this.props.history.push('/home'))
                   .catch(err => console.log(err))
       }
+      
       render() {
             const maxSize = 5242880;
             return (
@@ -72,7 +71,7 @@ export default class CreateDiscussion extends Component {
                         <div style={{ paddingTop: 5 + '%' }}>
                               <div className="create-container">
                                     <h2>Create a post</h2>
-                                    <form className="upload-form" onSubmit={this.handleSubmit}>
+                                    <form className="upload-form" onSubmit={this.handleSubmit} noValidate>
                                           <input type="text" placeholder="Title" id="title" required onChange={this.handleTitleChange}></input>
                                           <Dropzone onDrop={this.onDrop}
                                                 accept="image/png, image/jpeg, image/gif"
@@ -83,15 +82,14 @@ export default class CreateDiscussion extends Component {
                                                       const isFileTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;
                                                       return (
                                                             <div {...getRootProps()} className="upload">
-                                                                  <input {...getInputProps()} onChange={this.handleFileChange} required />
+                                                                  <input {...getInputProps()} required />
                                                                   {!isDragActive && 'Click here or drop a file to upload!'}
                                                                   {isDragActive && !isDragReject && "Drop it like it's hot!"}
-                                                                  {isDragReject && "File type not accepted, sorry!"}
+                                                                  {isDragReject && "File type not accepted"}
                                                                   {isFileTooLarge && (
-                                                                        <div className="text-danger mt-2">
-                                                                              File is too large.
-                                                                        </div>
-                                                                  )}
+                                                                        <div className="text-danger too-large-text">
+                                                                              File is too large
+                                                                        </div>)}
                                                             </div>
                                                       )
                                                 }

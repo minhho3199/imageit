@@ -8,6 +8,7 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      margin-top: 5%;
 
 }
 h2 {
@@ -84,10 +85,10 @@ h2 {
       max-height: 512px;
       text-align: center;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
 }
 .upload-form{
       width: 80%;
-      
 }
