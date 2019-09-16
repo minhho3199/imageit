@@ -24,11 +24,14 @@ export default class CreateDiscussion extends Component {
                                     <h2>Create a post</h2>
                                     <form>
                                           <input type="text" placeholder="Title" id="title"></input>
-                                          <Dropzone onDrop={this.onDrop}>
-                                                {({ getRootProps, getInputProps, isDragActive }) => (
+                                          <Dropzone onDrop={this.onDrop}
+                                                accept="image/png, image/jpeg, image/gif">
+                                                {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
                                                       <div {...getRootProps()}>
                                                             <input {...getInputProps()} />
-                                                            {isDragActive ? "Drop it like it's hot!" : 'Click me or drag a file to upload!'}
+                                                            {!isDragActive && 'Click here or drop a file to upload!'}
+                                                            {isDragActive && !isDragReject && "Drop it like it's hot!"}
+                                                            {isDragReject && "File type not accepted, sorry!"}
                                                       </div>
                                                 )}
                                           </Dropzone>
