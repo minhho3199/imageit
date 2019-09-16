@@ -3,7 +3,6 @@ import "./CreateDiscussion.css"
 import { Link } from "react-router-dom"
 import Navbar from '../Header/Navbar/Navbar'
 import Dropzone from 'react-dropzone'
-
 export default class CreateDiscussion extends Component {
       constructor(props) {
             super(props);
@@ -15,6 +14,8 @@ export default class CreateDiscussion extends Component {
                   this.props.history.push("/");
             }
       }
+
+
       render() {
             return (
                   <div>
@@ -22,15 +23,16 @@ export default class CreateDiscussion extends Component {
                         <div style={{ paddingTop: 5 + '%' }}>
                               <div className="create-container">
                                     <h2>Create a post</h2>
-                                    <form>
+                                    <form className="upload-form">
                                           <input type="text" placeholder="Title" id="title"></input>
-                                          <Dropzone className="upload" onDrop={this.onDrop}
+                                          <Dropzone onDrop={this.onDrop}
                                                 accept="image/png, image/jpeg, image/gif"
-                                                minSize={0}>
+                                                minSize={0}
+                                                >
                                                 {({ getRootProps, getInputProps, isDragActive, isDragReject, rejectedFiles }) => {
                                                       const isFileTooLarge = rejectedFiles.length > 0;
                                                       return (
-                                                            <div {...getRootProps()}>
+                                                            <div {...getRootProps()} className="upload">
                                                                   <input {...getInputProps()} />
                                                                   {!isDragActive && 'Click here or drop a file to upload!'}
                                                                   {isDragActive && !isDragReject && "Drop it like it's hot!"}

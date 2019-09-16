@@ -73,7 +73,21 @@ h2 {
       text-decoration: none;
 }
 .upload {
-      border: 1px solid black
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-width: 2px;
+      border-color: rgb(102, 102, 102);
+      border-style: dashed;
+      border-radius: 5px;
+      width: 100%;
+      max-height: 512px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+.upload-form{
+      width: 80%;
       
-
 }
