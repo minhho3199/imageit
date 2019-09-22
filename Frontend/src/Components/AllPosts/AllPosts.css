@@ -1,0 +1,13 @@
+* {
+      font-family: sans-serif;
+}
+#container {
+      width: 50%;
+}
+.discussion-container {
+      border: 1px solid lightgray;
+      padding: 10px;
+      background: white;
+      margin-bottom: 20px;
+      border-radius: 4px;
+  }

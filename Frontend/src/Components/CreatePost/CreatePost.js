@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import Navbar from '../Header/Navbar/Navbar'
 import Dropzone from 'react-dropzone'
 import axios from 'axios';
-import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode';
 
 export default class CreateDiscussion extends Component {
       constructor(props) {
@@ -28,7 +28,7 @@ export default class CreateDiscussion extends Component {
                         const decoded = jwt_decode(token);
                         this.setState({
                               userId: decoded.id,
-                        }, console.log(this.state.userId));
+                        });
                   }
             }
       }
