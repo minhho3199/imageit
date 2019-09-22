@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import "./HomePage.css";
-import Discussion from '../Discussion/Discussion';
+import Post from '../Post/Post';
 import Navbar from '../Header/Navbar/Navbar'
 class HomePage extends Component {
       componentDidMount() {
@@ -14,7 +14,7 @@ class HomePage extends Component {
                   <div style={{ width: 100 + '%' }}>
                         <Navbar></Navbar>
                         <div id="homepage-container">
-                              <Discussion></Discussion>
+                              <Post></Post>
                               <div id="sidebar-container">
                               <Link to="/create" id="create-post-container"><button id="create-post-button">Create Post</button></Link>
                               </div>

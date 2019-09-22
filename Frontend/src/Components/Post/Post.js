@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import "./Discussion.css";
+import "./Post.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faComment } from '@fortawesome/free-solid-svg-icons';
+import { FacebookSelector } from 'react-reactions';
 
 class Discussion extends Component {
       constructor(props) {
@@ -47,6 +48,8 @@ class Discussion extends Component {
                                     </div>
                                     <div className="button-container">
                                           <button><FontAwesomeIcon icon={faThumbsUp} /> Like</button>
+                                          {/* <FacebookCounter></FacebookCounter>
+                                          <FacebookSelector></FacebookSelector> */}
                                           <button><FontAwesomeIcon icon={faComment} /> Comment</button>
                                     </div>
                               </div>

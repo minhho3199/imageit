@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import "./CreateDiscussion.css"
+import "./CreatePost.css"
 import { Link } from "react-router-dom"
 import Navbar from '../Header/Navbar/Navbar'
 import Dropzone from 'react-dropzone'
