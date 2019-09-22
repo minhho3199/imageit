@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import "./Post.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faComment } from '@fortawesome/free-solid-svg-icons';
-import { FacebookSelector } from 'react-reactions';
 
 class Discussion extends Component {
       constructor(props) {
