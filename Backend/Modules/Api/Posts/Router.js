@@ -45,4 +45,28 @@ router.get("/", (req, res) => {
             }
         })
 })
+router.post("/comment/:postID", auth, upload.single('image'), (req, res) => {
+    const newComment = {
+        image: fs.readFileSync(req.file.path),
+        contentType: req.file.mimetype,
+        createBy: req.body.createBy,
+    }
+    Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { "comment": newComment } })
+        .then(data => {
+            res.send(data.comment);
+        })
+        .catch(err => res.send(err));
+})
+
+router.get("/comment/:postID", (req, res) => {
+    Post.findOne({ _id: req.params.postID }, (err, img) => {
+        res.contentType('json');
+        res.send(img.comment)
+    }).populate("comment.createBy", "name")
+        .exec(err => {
+            if (err) console.log(err)
+        })
+
+})
+
 module.exports = router;

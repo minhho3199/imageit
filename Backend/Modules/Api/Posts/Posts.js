@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const commentSchema = new Schema({
-    createBy: {type: Schema.Types.ObjectId, ref: "users", required: true},
-    content: {type: String, required: true}
-})
 //Create Post Schema
 const PostSchema = new Schema({
     title: {
@@ -33,9 +29,14 @@ const PostSchema = new Schema({
         type: Number,
         default: 0
     },
-    comment: {
-        type: {commentSchema}, default: []
-    }
+    comment: [{
+        createBy: {type: Schema.Types.ObjectId, ref: "users", required: true},
+        image: {type: Buffer, required: true},
+        contentType: {
+            type: String,
+            required: true,
+        },
+    }]
 });
 
 //Export the Schema so that it can be used outside
