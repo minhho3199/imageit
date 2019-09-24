@@ -54,7 +54,7 @@ class SinglePost extends Component {
                 <div className="button-container">
                     {/* <FacebookCounter></FacebookCounter> */}
                     {/* <FacebookSelector></FacebookSelector> */}
-                 <button onClick={this.handleLikedClick}><FontAwesomeIcon icon={faThumbsUp} /> Like: </button>
+                 <button onClick={this.handleLikedClick}><FontAwesomeIcon icon={faThumbsUp} /> Likel</button>
                     <button onClick={this.handleCommentClick}><FontAwesomeIcon icon={faComment} /> Comment</button>
                 </div>
                 {this.state.liked ? <FacebookSelector className="emoji"></FacebookSelector> : null}

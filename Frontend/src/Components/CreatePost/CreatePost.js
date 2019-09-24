@@ -16,6 +16,8 @@ export default class CreateDiscussion extends Component {
                   title: '',
                   image: null,
                   userId: '',
+                  imgSrc: null,
+                  showDropzone: true            
             }
       }
 
@@ -39,8 +41,20 @@ export default class CreateDiscussion extends Component {
       }
       onDrop(files) {
             this.setState({
-                  image: files[0]
+                  image: files[0],
+                  showDropzone: false,
             })
+            //if(!isDragReject || !isFileTooLarge) {
+            const reader = new FileReader()
+            const currentFile= files[0];
+            reader.addEventListener("load", ()=>{
+                  this.setState({
+                        imgSrc: reader.result
+                  })
+            }, false
+            )
+            reader.readAsDataURL(currentFile)
+      //}
       }
       handleSubmit(e) {
             e.preventDefault();
@@ -65,6 +79,7 @@ export default class CreateDiscussion extends Component {
       
       render() {
             const maxSize = 5242880;
+            const {imgSrc} = this.state;
             return (
                   <div>
                         <Navbar></Navbar>
@@ -73,7 +88,7 @@ export default class CreateDiscussion extends Component {
                                     <h2>Create a post</h2>
                                     <form className="upload-form" onSubmit={this.handleSubmit} noValidate>
                                           <input type="text" placeholder="Title" id="title" required onChange={this.handleTitleChange}></input>
-                                          <Dropzone onDrop={this.onDrop}
+                                          {this.state.showDropzone ? <Dropzone onDrop={this.onDrop}
                                                 accept="image/png, image/jpeg, image/gif"
                                                 multiple={false}
                                                 minSize={0}
@@ -94,7 +109,8 @@ export default class CreateDiscussion extends Component {
                                                       )
                                                 }
                                                 }
-                                          </Dropzone>
+                                          </Dropzone> : null}
+                                          <img src={imgSrc}></img>
                                           <div id="button-container">
                                                 <Link to="/home" className="link"><button className="button" id="cancel">Cancel</button></Link>
                                                 <button className="button" id="submit">Submit</button>
