@@ -3,14 +3,17 @@ import "./SinglePost.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faComment } from '@fortawesome/free-solid-svg-icons';
 import Comments from '../Comments/Comments';
-
+import FacebookSelector from '../facebook/FacebookSelector';
+import FacebookCounter from '../facebook/FacebookCounter';
 class SinglePost extends Component {
     constructor(props) {
         super(props);
         this.arrayBufferToBase64 = this.arrayBufferToBase64.bind(this);
         this.handleCommentClick = this.handleCommentClick.bind(this);
+        this.handleLikedClick = this.handleLikedClick.bind(this);
         this.state = {
             comments: false,
+            liked: false
         }
     }
 
@@ -24,8 +27,17 @@ class SinglePost extends Component {
     handleCommentClick() {
         this.setState({
             comments: !this.state.comments,
+            liked: false
         })
     }
+
+    handleLikedClick() {
+        this.setState({
+            liked: !this.state.liked,
+            comments: false,
+        })
+    }
+
     render() {
         var base64Flag = 'data:image/jpeg;base64,';
         return (
@@ -40,9 +52,12 @@ class SinglePost extends Component {
                     <img src={base64Flag + this.arrayBufferToBase64(this.props.image)} className="picture"></img>
                 </div>
                 <div className="button-container">
-                    <button><FontAwesomeIcon icon={faThumbsUp} /> Like</button>
+                    {/* <FacebookCounter></FacebookCounter> */}
+                    {/* <FacebookSelector></FacebookSelector> */}
+                 <button onClick={this.handleLikedClick}><FontAwesomeIcon icon={faThumbsUp} /> Like: </button>
                     <button onClick={this.handleCommentClick}><FontAwesomeIcon icon={faComment} /> Comment</button>
                 </div>
+                {this.state.liked ? <FacebookSelector className="emoji"></FacebookSelector> : null}
                 {this.state.comments ? <Comments postID={this.props.id}></Comments> : null}
             </div>
         );

@@ -32,3 +32,6 @@
     background: lightgray;
     cursor: pointer;
 }
+.emoji div{
+    position: absolute;
+}
