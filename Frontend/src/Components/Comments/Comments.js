@@ -12,6 +12,7 @@ class Comments extends Component {
         this.state = {
             image: null,
             userId: '',
+            imgSrc: null,
         }
     }
     componentDidMount() {
@@ -47,11 +48,24 @@ class Comments extends Component {
     }
     onDrop(files) {
         this.setState({
-            image: files[0]
+              image: files[0],
         })
-    }
+        const reader = new FileReader()
+        const currentFile = files[0];
+        if (currentFile !== undefined) {
+              reader.addEventListener("load", () => {
+                    this.setState({
+                          imgSrc: reader.result
+                    })
+              }, false
+              )
+              reader.readAsDataURL(currentFile)
+        }
+  }
     render() {
         const maxSize = 5242880;
+        const { imgSrc } = this.state;
+
         return (
             <div>
                 <form className="comment-upload-container" onSubmit={this.handleSubmit}>
@@ -77,6 +91,7 @@ class Comments extends Component {
                         }
                         }
                     </Dropzone>
+                    <img src={imgSrc}></img>
                     <button className="button" id="submit-button">Comment</button>
                 </form>
                 <CommentList postID={this.props.postID}></CommentList> 

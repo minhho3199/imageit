@@ -17,7 +17,7 @@ export default class CreateDiscussion extends Component {
                   image: null,
                   userId: '',
                   imgSrc: null,
-                  showDropzone: true            
+                  showDropzone: true
             }
       }
 
@@ -42,19 +42,21 @@ export default class CreateDiscussion extends Component {
       onDrop(files) {
             this.setState({
                   image: files[0],
-                  showDropzone: false,
             })
-            //if(!isDragReject || !isFileTooLarge) {
             const reader = new FileReader()
-            const currentFile= files[0];
-            reader.addEventListener("load", ()=>{
+            const currentFile = files[0];
+            if (currentFile !== undefined) {
+                  reader.addEventListener("load", () => {
+                        this.setState({
+                              imgSrc: reader.result
+                        })
+                  }, false
+                  )
+                  reader.readAsDataURL(currentFile)
                   this.setState({
-                        imgSrc: reader.result
+                        showDropzone: false
                   })
-            }, false
-            )
-            reader.readAsDataURL(currentFile)
-      //}
+            }
       }
       handleSubmit(e) {
             e.preventDefault();
@@ -76,10 +78,12 @@ export default class CreateDiscussion extends Component {
                   .then(() => this.props.history.push('/home'))
                   .catch(err => console.log(err))
       }
-      
+
       render() {
             const maxSize = 5242880;
-            const {imgSrc} = this.state;
+            // const maxSize = 5;
+
+            const { imgSrc } = this.state;
             return (
                   <div>
                         <Navbar></Navbar>
