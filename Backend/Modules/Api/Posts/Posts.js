@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//Create Post Schema
 const PostSchema = new Schema({
     title: {
         type: String,
@@ -25,10 +24,11 @@ const PostSchema = new Schema({
         type: Boolean,
         default: true,
     },
-    like: {
-        type: Number,
-        default: 0
-    },
+    reactions: [{
+        emoji: {type: String},
+        by: {type: Schema.Types.ObjectId, ref: "users", required: true},
+ 
+    }],
     comment: [{
         createBy: {type: Schema.Types.ObjectId, ref: "users", required: true},
         image: {type: Buffer, required: true},

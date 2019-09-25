@@ -40,7 +40,7 @@ export const FacebookSelector = ({ iconSize, reactions, variant, onSelect }) => 
 }
 
 FacebookSelector.defaultProps = {
-  reactions: ['like', 'love', 'haha', 'wow', 'sad', 'angry'],
+  reactions: ['like', 'love', 'haha', 'sad', 'angry'],
   iconSize: 38,
   variant: 'facebook',
 }

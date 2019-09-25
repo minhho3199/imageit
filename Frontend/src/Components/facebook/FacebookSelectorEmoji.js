@@ -17,7 +17,9 @@ export const GithubSelectorEmoji = ({ icon, label, onSelect, hover }) => {
         backgroundSize: '100% 100%',
         transformOrigin: 'bottom',
         cursor: 'pointer',
-
+        width: '100%',
+        backgroundColor: 'transparent',
+        border: 'none',
         transition: '200ms transform cubic-bezier(0.23, 1, 0.32, 1)',
       },
       label: {
@@ -54,7 +56,7 @@ export const GithubSelectorEmoji = ({ icon, label, onSelect, hover }) => {
   return (
     <div style={ styles.wrap }>
       <div style={ styles.label }>{ label }</div>
-      <div style={ styles.icon } onClick={ handleClick } />
+      <button style={ styles.icon } onClick={ handleClick } />
     </div>
   )
 }

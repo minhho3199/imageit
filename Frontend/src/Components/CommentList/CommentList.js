@@ -9,6 +9,8 @@ class CommentList extends Component {
         }
     }
 
+    //Convert hex numbers of the image to Base64
+    //https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));
@@ -33,12 +35,12 @@ class CommentList extends Component {
             <div>
                 {this.state.comments.map(comment => (
                     <div key={comment._id}>
-                            <div className="posted-by-container">
-                                <span>by <em>{comment.createBy.name}</em></span>
-                            </div>
-                            <div className="pic-container">
-                                <img src={base64Flag + this.arrayBufferToBase64(comment.image.data)} className="picture"></img>
-                            </div>
+                        <div className="posted-by-container">
+                            <span><em>{comment.createBy.name}</em></span>
+                        </div>
+                        <div className="pic-container">
+                            <img src={base64Flag + this.arrayBufferToBase64(comment.image.data)} className="picture"></img>
+                        </div>
                     </div>
                 ))}
             </div>

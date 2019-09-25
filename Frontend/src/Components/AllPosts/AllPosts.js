@@ -27,11 +27,11 @@ class Discussion extends Component {
                   <div id="container">
                         {this.state.posts.map(post => (
                               <div className="discussion-container" key={post._id}>
-
                                     <SinglePost id={post._id}
                                           title={post.title}
                                           author={post.author.name}
-                                          image={post.image.data} />
+                                          image={post.image.data} 
+                                          reactions={post.reactions}/>
                               </div>
                         ))}
                   </div>
