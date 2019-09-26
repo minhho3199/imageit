@@ -27,11 +27,14 @@ class Discussion extends Component {
                   <div id="container">
                         {this.state.posts.map(post => (
                               <div className="discussion-container" key={post._id}>
+                                    {/*Passes the post state to SinglePost component as props */}
                                     <SinglePost id={post._id}
                                           title={post.title}
                                           author={post.author.name}
-                                          image={post.image.data} 
-                                          reactions={post.reactions}/>
+                                          authorID={post.author._id}
+                                          image={post.image.data}
+                                          reactions={post.reactions} 
+                                          comments={post.comment}/>
                               </div>
                         ))}
                   </div>

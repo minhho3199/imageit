@@ -16,7 +16,7 @@ app.use(express.json());
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
     .then(() => console.log("MongoDB connected successfully"))
     .catch(err => console.log(err));
-
+mongoose.set('useFindAndModify', false);
 app.use("/api/users", users);
 app.use("/api/posts", posts);
 app.listen(PORT, () => {

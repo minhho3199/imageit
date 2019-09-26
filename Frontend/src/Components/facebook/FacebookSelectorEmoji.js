@@ -4,7 +4,7 @@ import React from 'react'
 import reactCSS, { hover } from 'reactcss'
 import active from '../helpers/active'
 
-export const GithubSelectorEmoji = ({ icon, label, onSelect, hover }) => {
+export const GithubSelectorEmoji = ({ icon, label, onSelect, hover, onSubmit }) => {
   const styles = reactCSS({
     'default': {
       wrap: {
@@ -13,7 +13,7 @@ export const GithubSelectorEmoji = ({ icon, label, onSelect, hover }) => {
       },
       icon: {
         paddingBottom: '100%',
-        backgroundImage: `url(${ icon })`,
+        backgroundImage: `url(${icon})`,
         backgroundSize: '100% 100%',
         transformOrigin: 'bottom',
         cursor: 'pointer',
@@ -52,11 +52,16 @@ export const GithubSelectorEmoji = ({ icon, label, onSelect, hover }) => {
   const handleClick = () => {
     onSelect && onSelect(label)
   }
-
+  const handleSubmit = () => {
+    onSubmit && onSubmit(label)
+  }
   return (
-    <div style={ styles.wrap }>
-      <div style={ styles.label }>{ label }</div>
-      <button style={ styles.icon } onClick={ handleClick } />
+    <div style={styles.wrap}>
+      <div style={styles.label}>{label}</div>
+      <form>
+        <button style={styles.icon} onClick={handleClick} />
+      </form>
+
     </div>
   )
 }

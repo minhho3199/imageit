@@ -82,7 +82,6 @@ router.post("/likes/:postID", auth, (req, res) => {
     //             "error": "Person already liked",
     //         });
     //     } else {
-    console.log(req.body.by);
     const newReaction = {
         emoji: req.body.emoji,
         by: req.body.by,
@@ -95,5 +94,10 @@ router.post("/likes/:postID", auth, (req, res) => {
     // }
     // })
 
+})
+router.delete("/delete/:postID", auth, (req, res) => {
+    Post.findOne({ _id: req.params.postID }).deleteOne().exec(err => {
+        if (err) console.log(err);
+    })
 })
 module.exports = router;

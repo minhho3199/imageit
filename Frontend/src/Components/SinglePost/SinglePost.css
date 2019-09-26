@@ -1,6 +1,6 @@
-.title {
-    margin: 0 auto;
-    border: 0;
+.title-container {
+    display: flex;
+    justify-content: space-between
 }
 
 .picture {
@@ -34,4 +34,16 @@
 }
 .emoji div{
     position: absolute;
+}
+.custom-ui {
+    padding: 20px
+}
+#confirm-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.confirm-button {
+    margin-left: 10px;
+    
 }

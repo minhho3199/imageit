@@ -27,7 +27,6 @@ class CommentList extends Component {
                 }, console.log(data))
 
             })
-
     }
     render() {
         var base64Flag = 'data:image/jpeg;base64,';
