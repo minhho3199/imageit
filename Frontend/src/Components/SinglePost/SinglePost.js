@@ -13,6 +13,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 import { confirmAlert } from 'react-confirm-alert';
 import "react-confirm-alert/src/react-confirm-alert.css"
+
 class SinglePost extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +21,6 @@ class SinglePost extends Component {
         this.handleCommentClick = this.handleCommentClick.bind(this);
         this.handleLikedClick = this.handleLikedClick.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.submit = this.submit.bind(this);
         this.state = {
@@ -29,7 +29,6 @@ class SinglePost extends Component {
             counters: this.props.reactions,
             username: '',
             userID: '',
-            emojiSelect: '',
         }
     }
 
@@ -51,29 +50,22 @@ class SinglePost extends Component {
     //Source code from react-reactions package
     //https://casesandberg.github.io/react-reactions/
     handleSelect(emoji) {
-        const index = _.findIndex(this.state.counters, { by: this.state.username })
+        const index = _.findIndex(this.state.counters, { by: this.state.userID })
         if (index > -1) {
             this.setState({
                 counters: [
                     ...this.state.counters.slice(0, index),
-                    { emoji, by: this.state.username },
+                    { emoji, by: this.state.userID },
                     ...this.state.counters.slice(index + 1),
                 ],
                 showSelector: false,
-                emojiSelect: emoji,
             })
         } else {
             this.setState({
-                counters: [...this.state.counters, { emoji, by: this.state.username }],
+                counters: [...this.state.counters, { emoji, by: this.state.userID }],
                 showSelector: false,
-                emojiSelect: emoji,
             })
         }
-
-
-    }
-    handleSubmit(e) {
-        e.preventDefault();
         const token = localStorage.usertoken;
         var config = {
             headers: {
@@ -81,18 +73,16 @@ class SinglePost extends Component {
                 'Authorization': token,
             },
         };
-        console.log(this.state.emojiSelect)
+        console.log(emoji)
         const fd = new FormData();
-        fd.append('emoji', this.state.emojiSelect);
+        fd.append('emoji', emoji);
         fd.append('by', this.state.userID);
-        axios.post('http://localhost:5000/api/posts/likes/' + this.props.id, {
-            emoji: this.state.emojiSelect,
-            by: this.state.userID,
-        }, config)
+        axios.post('http://localhost:5000/api/posts/likes/' + this.props.id, fd, config)
             .then(result => {
                 console.log(result);
             })
             .catch(err => console.log(err))
+
     }
 
     handleDelete(e) {
@@ -139,8 +129,8 @@ class SinglePost extends Component {
                         <h2>Confirm Delete</h2>
                         <h5>Are you sure you want to delete this file?</h5>
                         <div id="confirm-container">
-                            <Button variant="outline-secondary" onClick={onClose}>No</Button> 
-                            <form style={{margin: 0}} >
+                            <Button variant="outline-secondary" onClick={onClose}>No</Button>
+                            <form style={{ margin: 0 }} >
                                 <Button variant="primary" type="submit" onClick={this.handleDelete} className="confirm-button">Yes, Delete it!</Button>
                             </form>
                         </div>
@@ -160,8 +150,8 @@ class SinglePost extends Component {
                     {(this.props.authorID === this.state.userID) ?
                         <DropdownButton className="dropdown-button" title="">
                             {(!this.props.comments.length && !this.props.reactions.length) ?
-                                <Dropdown.Item as="button" id="dropdown-items">Update Post</Dropdown.Item> : null}
-
+                                <Dropdown.Item as="button" id="dropdown-items">Update Post</Dropdown.Item>
+                                : null}
                             <Dropdown.Item as="button" id="dropdown-items" onClick={this.submit}>Delete Post</Dropdown.Item>
                         </DropdownButton> : null}
                 </div>
@@ -173,7 +163,7 @@ class SinglePost extends Component {
                 </div>
                 <FacebookCounter
                     counters={this.state.counters}
-                    user={this.state.username}
+                    // user={this.state.username}
                     bg="#fafafa"
                 />
                 <div className="button-container">
@@ -181,7 +171,7 @@ class SinglePost extends Component {
                     <button onClick={this.handleCommentClick}><FontAwesomeIcon icon={faComment} /> Comment</button>
                 </div>
                 {this.state.showSelector ?
-                    <FacebookSelector onSubmit={this.handleSubmit} onSelect={this.handleSelect}></FacebookSelector> : null}
+                    <FacebookSelector onSelect={this.handleSelect}></FacebookSelector> : null}
                 {this.state.comments ? <Comments postID={this.props.id}></Comments> : null}
             </div>
         );

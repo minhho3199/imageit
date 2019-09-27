@@ -64,6 +64,7 @@ router.post("/comment/:postID", auth, upload.single('image'), (req, res) => {
 //Getting all the comments of the post
 router.get("/comment/:postID", (req, res) => {
     Post.findOne({ _id: req.params.postID }, (err, img) => {
+        if (err) res.send(err);
         res.contentType('json');
         res.send(img.comment)
     }).populate("comment.createBy", "name")
@@ -73,28 +74,21 @@ router.get("/comment/:postID", (req, res) => {
 })
 
 //Posting a new reaction for the post
-router.post("/likes/:postID", auth, (req, res) => {
-    // Post.findOne({
-    //     by: req.body.by
-    // }).then(post => {
-    //     if (post) {
-    //         return res.status(400).json({
-    //             "error": "Person already liked",
-    //         });
-    //     } else {
+router.post("/likes/:postID", auth, upload.single("emoji"), (req, res) => {
     const newReaction = {
         emoji: req.body.emoji,
         by: req.body.by,
     }
-    Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { "reactions": newReaction } })
-        .then(data => {
-            res.send(data.reactions);
-        })
-        .catch(err => res.send(err));
-    // }
-    // })
-
+    Post.updateOne({ _id: req.params.postID }, { $pull: { reactions: { by: req.body.by } } }, (err, obj) => {
+        if (err) console.log(err);
+        Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { "reactions": newReaction } })
+            .then((data) => {
+                res.send(data.reactions);
+            })
+            .catch(err => res.send(err));
+    })
 })
+//Delete a post
 router.delete("/delete/:postID", auth, (req, res) => {
     Post.findOne({ _id: req.params.postID }).deleteOne().exec(err => {
         if (err) console.log(err);

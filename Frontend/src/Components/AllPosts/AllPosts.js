@@ -1,9 +1,7 @@
-import React, { Component, lazy, Suspense } from 'react';
+import React, { Component} from 'react';
 import "./AllPosts.css";
 import SinglePost from '../SinglePost/SinglePost';
 import Spinner from 'react-bootstrap/Spinner';
-
-// const PostComponent = lazy(() => import('../SinglePost/SinglePost'));
 
 class Discussion extends Component {
       constructor(props) {
@@ -30,6 +28,7 @@ class Discussion extends Component {
       render() {
             return (
                   <div id="container">
+                        {/*If the data hasn't been fetched yet, a spinner will appear as placeholder */}
                         {this.state.loading ?
                               <div className="discussion-container loading-container">
                                     <Spinner animation="border" role="status">

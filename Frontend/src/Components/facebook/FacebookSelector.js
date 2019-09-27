@@ -17,24 +17,25 @@ export const FacebookSelector = ({ iconSize, reactions, variant, onSelect }) => 
         position: 'absolute',
       },
       icon: {
-        width: `${ iconSize + 10 }px`,
+        width: `${iconSize + 10}px`,
       },
     },
   })
 
   return (
-    <div style={ styles.selector }>
-      { _.map(reactions, (reaction) => {
+    <div style={styles.selector}>
+      {_.map(reactions, (reaction) => {
         return (
-          <div style={ styles.icon } key={ reaction }>
-            <FacebookSelectorEmoji
-              icon={ icons.find(variant, reaction) }
-              label={ reaction }
-              onSelect={ onSelect }
-            />
+          <div style={styles.icon} key={reaction}>
+              <FacebookSelectorEmoji
+              
+                icon={icons.find(variant, reaction)}
+                label={reaction}
+                onSelect={onSelect}
+              />
           </div>
         )
-      }) }
+      })}
     </div>
   )
 }

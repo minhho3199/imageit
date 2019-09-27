@@ -39,7 +39,7 @@ export const FacebookCounter = ({ counters, user, important, onClick, bg }) => {
       nameString.push(important[1])
     }
   }
-  nameString.push(`${ names.length - nameString.length } others`)
+  nameString.push(`${ names.length - nameString.length } reactions`)
 
 
   return (
