@@ -88,10 +88,25 @@ router.post("/likes/:postID", auth, upload.single("emoji"), (req, res) => {
             .catch(err => res.send(err));
     })
 })
+
 //Delete a post
 router.delete("/delete/:postID", auth, (req, res) => {
     Post.findOne({ _id: req.params.postID }).deleteOne().exec(err => {
         if (err) console.log(err);
+    })
+})
+
+router.post("/update/:postID", auth, upload.single("image"), (req, res) =>  {
+    const post = {
+        title: req.body.title,
+        image: fs.readFileSync(req.file.path),
+        contentType: req.file.mimetype,
+        author: req.body.author,
+    };
+    
+    Post.findOneAndUpdate({_id: req.params.postID}, {$set: post }, (err, obj) => {
+        if(err) console.log(err);
+        res.send(obj);
     })
 })
 module.exports = router;

@@ -21,9 +21,7 @@ class Discussion extends Component {
                               loading: false,
                               posts: data,
                         })
-
                   })
-
       }
       render() {
             return (
@@ -46,7 +44,6 @@ class Discussion extends Component {
                                                       image={post.image.data}
                                                       reactions={post.reactions}
                                                       comments={post.comment} />
-
                                           </div>
                                     ))}
                               </div>}

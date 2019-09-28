@@ -38,6 +38,9 @@
 .custom-ui {
     padding: 20px
 }
+.update-ui {
+    background: white
+}
 #confirm-container {
     display: flex;
     justify-content: flex-end;
@@ -45,5 +48,4 @@
 }
 .confirm-button {
     margin-left: 10px;
-    
 }

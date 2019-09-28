@@ -6,12 +6,8 @@ import CreatePost from '../CreatePost/CreatePost';
 import Signup from '../Signup/Signup'
 import LandingPage from "../LandingPage/LandingPage";
 import Profile from '../Profile/Profile';
-
+import UpdatePost from '../UpdatePost/UpdatePost'
 class Routes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
   render() {
     return (
       <div>
@@ -22,6 +18,7 @@ class Routes extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/create" component={CreatePost} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/update/:id" component={UpdatePost} />
         </Switch>
       </div>
     )

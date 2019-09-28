@@ -12,6 +12,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 import { confirmAlert } from 'react-confirm-alert';
+import { Link } from 'react-router-dom'
 import "react-confirm-alert/src/react-confirm-alert.css"
 
 class SinglePost extends Component {
@@ -135,7 +136,7 @@ class SinglePost extends Component {
                             </form>
                         </div>
 
-                    </div>
+                    </div >
                 )
             }
         })
@@ -149,8 +150,15 @@ class SinglePost extends Component {
                     {/*If the current user is the person who created the post, show dropdown options */}
                     {(this.props.authorID === this.state.userID) ?
                         <DropdownButton className="dropdown-button" title="">
-                            {(!this.props.comments.length && !this.props.reactions.length) ?
-                                <Dropdown.Item as="button" id="dropdown-items">Update Post</Dropdown.Item>
+                            {(!this.props.comments.length && !this.state.counters.length) ?
+                                <Link to={{
+                                    pathname: "/update/" + this.props.id,
+                                    state: {
+                                        title: this.props.title
+                                        // id: this.props.id
+                                    }
+                                }}>
+                                    <Dropdown.Item as="button" id="dropdown-items">Update Post</Dropdown.Item></Link>
                                 : null}
                             <Dropdown.Item as="button" id="dropdown-items" onClick={this.submit}>Delete Post</Dropdown.Item>
                         </DropdownButton> : null}
@@ -163,7 +171,6 @@ class SinglePost extends Component {
                 </div>
                 <FacebookCounter
                     counters={this.state.counters}
-                    // user={this.state.username}
                     bg="#fafafa"
                 />
                 <div className="button-container">
