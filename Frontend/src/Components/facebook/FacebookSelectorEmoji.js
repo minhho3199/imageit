@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
-
+//This code is from the react-reactions package by caseandberg on github.com
+//See https://github.com/casesandberg/react-reactions
 import React from 'react'
 import reactCSS, { hover } from 'reactcss'
 import active from '../helpers/active'
@@ -55,7 +56,7 @@ export const GithubSelectorEmoji = ({ icon, label, onSelect, hover }) => {
   return (
     <div style={styles.wrap}>
       <div style={styles.label}>{label}</div>
-      <form method="POST">
+      <form method="POST" style={{margin: 0}}>
         <button type="submit" style={styles.icon} onClick={handleClick} />
       </form>
 

@@ -1,3 +1,5 @@
+//This code is from the react-reactions package by caseandberg on github.com
+//See https://github.com/casesandberg/react-reactions
 import React from 'react'
 import reactCSS from 'reactcss'
 import icons from '../helpers/icons'
