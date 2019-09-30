@@ -25,6 +25,10 @@ const PostSchema = new Schema({
         by: {type: Schema.Types.ObjectId, ref: "users", required: true},
  
     }],
+    reactCount: {
+        type: Number,
+        default: 0
+    },
     comment: [{
         createBy: {type: Schema.Types.ObjectId, ref: "users", required: true},
         image: {type: Buffer, required: true},

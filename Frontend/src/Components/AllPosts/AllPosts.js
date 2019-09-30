@@ -20,7 +20,7 @@ class AllPosts extends Component {
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
       componentDidMount() {
-            axios.get(`http://localhost:5000/api/posts/get?count=${this.state.count}`)
+            axios.get(`http://localhost:5000/api/posts/new?count=${this.state.count}`)
                   .then(res => {
                         this.setState({
                               loading: false,
@@ -28,6 +28,7 @@ class AllPosts extends Component {
                               count: this.state.count + 5
                         })
                   })
+
       }
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
@@ -36,14 +37,14 @@ class AllPosts extends Component {
             this.setState({
                   count: this.state.count + 5,
             })
-            axios.get(`http://localhost:5000/api/posts/get?count=${count}`)
+            axios.get(`http://localhost:5000/api/posts/new?count=${count}`)
                   .then(res => {
                         this.setState({
                               loading: false,
                               posts: this.state.posts.concat(res.data)
                         }, () => {
                               //If there is no more data to be fetched, the loading spinner will not be shown
-                              if(res.data.length === 0) {
+                              if (res.data.length === 0) {
                                     this.setState({
                                           hasMore: false
                                     })

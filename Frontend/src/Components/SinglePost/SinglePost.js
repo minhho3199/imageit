@@ -45,6 +45,7 @@ class SinglePost extends Component {
                     userID: decoded.id
                 });
             }
+            console.log(this.props.image);
         }
     }
 
@@ -100,7 +101,8 @@ class SinglePost extends Component {
     }
 
     //Convert hex numbers of the image to Base64
-    //https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
+    //This code is based on the tutorial by Colin Reilly on medium.com
+    //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));
@@ -153,7 +155,7 @@ class SinglePost extends Component {
                             {(!this.props.comments.length && !this.state.counters.length) ?
                                 /*This code is based on code by Tyler McGinnis on Youtube 
                                 See https://www.youtube.com/watch?v=nmbX2QL7ZJc*/
-                                <Link to={{
+                                <Link style={{textDecoration: 'none'}}to={{
                                     pathname: "/update/" + this.props.id,
                                     state: {
                                         title: this.props.title

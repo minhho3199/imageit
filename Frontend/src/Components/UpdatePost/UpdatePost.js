@@ -16,7 +16,8 @@ export default class CreateDiscussion extends Component {
             image: null,
             userId: '',
             imgSrc: null,
-            showDropzone: true
+            showDropzone: true,
+            error: "",
         }
     }
 
@@ -58,30 +59,39 @@ export default class CreateDiscussion extends Component {
             )
             reader.readAsDataURL(currentFile)
             this.setState({
-                showDropzone: false
+                showDropzone: false,
+                error: "",
             })
         }
     }
     handleSubmit(e) {
+        const {showDropzone} = this.state;
         e.preventDefault();
-        const token = localStorage.usertoken;
-        var config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': token,
-            },
-        };
-        const fd = new FormData();
-        const { id } = this.props.match.params;
-        fd.append('title', this.state.title);
-        fd.append('image', this.state.image);
-        fd.append('author', this.state.userId);
-        axios.post('http://localhost:5000/api/posts/update/' + id, fd, config)
-            .then(result => {
-                console.log(result);
+        if(!showDropzone) {
+            const token = localStorage.usertoken;
+            var config = {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': token,
+                },
+            };
+            const fd = new FormData();
+            const { id } = this.props.match.params;
+            fd.append('title', this.state.title);
+            fd.append('image', this.state.image);
+            fd.append('author', this.state.userId);
+            axios.post('http://localhost:5000/api/posts/update/' + id, fd, config)
+                .then(result => {
+                    console.log(result)
+                })
+                .then(() => this.props.history.push('/home'))
+                .catch(err => console.log(err))
+        } else {
+            this.setState({
+                error: "You have not attached a picture yet", 
             })
-            .then(() => this.props.history.push('/home'))
-            .catch(err => console.log(err))
+        }
+
     }
 
     render() {
@@ -94,7 +104,7 @@ export default class CreateDiscussion extends Component {
                 <div style={{ paddingTop: 5 + '%' }}>
                     <div className="create-container">
                         <h2>Update the Post</h2>
-                        <form className="upload-form" onSubmit={this.handleSubmit} noValidate>
+                        <form className="upload-form" onSubmit={this.handleSubmit}>
                             <input type="text" placeholder={title} id="title" required onChange={this.handleTitleChange}></input>
                             {this.state.showDropzone ?
                                 //This code is by James King on upmostly.com
@@ -122,6 +132,7 @@ export default class CreateDiscussion extends Component {
                                     }
                                 </Dropzone> : null}
                             <img src={imgSrc} alt=""></img>
+                            <span className="error-text">{this.state.error}</span>
                             <div id="button-container">
                                 <Link to="/home" className="link"><button className="button" id="cancel">Cancel</button></Link>
                                 <button className="button" id="submit">Submit</button>

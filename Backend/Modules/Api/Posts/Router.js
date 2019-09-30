@@ -28,7 +28,7 @@ router.post("/create", auth, upload.single("image"), (req, res) => {
 })
 
 //getting all the posts from the database
-router.get("/get", (req, res) => {
+router.get("/new", (req, res) => {
     //This code by user omererbil on github.com
     //See https://github.com/wprl/baucis/issues/303
     const count = Number(req.query.count);
@@ -40,6 +40,7 @@ router.get("/get", (req, res) => {
         res.contentType('json');
         res.json(img);
     }).sort({
+        reactCount: -1,
         _id: -1
     }).skip(count).limit(5)
         .populate('author', 'name')
@@ -47,10 +48,8 @@ router.get("/get", (req, res) => {
             if (err) {
                 console.log(err);
             }
-            // console.log(img);
         })
 })
-
 //Posting a new comment
 router.post("/comment/:postID", auth, upload.single('image'), (req, res) => {
     const newComment = {
@@ -83,9 +82,9 @@ router.post("/likes/:postID", auth, upload.single("emoji"), (req, res) => {
         emoji: req.body.emoji,
         by: req.body.by,
     }
-    Post.updateOne({ _id: req.params.postID }, { $pull: { reactions: { by: req.body.by } } }, (err, obj) => {
+    Post.updateOne({ _id: req.params.postID }, { $pull: { reactions: { by: req.body.by } }}, (err, obj) => {
         if (err) console.log(err);
-        Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { "reactions": newReaction } })
+        Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { reactions: newReaction }, $inc: {reactCount: 1} })
             .then((data) => {
                 res.send(data.reactions);
             })

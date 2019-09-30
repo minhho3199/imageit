@@ -91,7 +91,7 @@ export default class CreateDiscussion extends Component {
                         <div style={{ paddingTop: 5 + '%' }}>
                               <div className="create-container">
                                     <h2>Create a post</h2>
-                                    <form className="upload-form" onSubmit={this.handleSubmit} noValidate>
+                                    <form className="upload-form" onSubmit={this.handleSubmit}>
                                           <input type="text" placeholder="Title" id="title" required onChange={this.handleTitleChange}></input>
                                           {this.state.showDropzone ?
                                                 //This code is by James King on upmostly.com
