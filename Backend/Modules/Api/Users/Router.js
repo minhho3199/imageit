@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const User = require('./User');
 require('dotenv').config();
 
+//This code is based on an answer by "MoreCodes" on Youtube
+//See https://www.youtube.com/watch?v=S9maJY5JcZc
 router.post('/register', (req, res) => {
       //See if user already exists
       User.findOne({
@@ -34,6 +36,8 @@ router.post('/register', (req, res) => {
             });
 });
 
+//This code is based on an answer by "MoreCodes" on Youtube
+//See https://www.youtube.com/watch?v=S9maJY5JcZc
 router.post('/login', (req, res) => {
       User.findOne({
             email: req.body.email

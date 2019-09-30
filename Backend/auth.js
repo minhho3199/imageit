@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+//This code is by Traversy Media on Youtube
+//See https://www.youtube.com/watch?v=USaB1adUHM0
+
 //Middleware for authorization
 function auth(req,res,next) {
     const token = req.header("Authorization");

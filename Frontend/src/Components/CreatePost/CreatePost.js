@@ -39,6 +39,8 @@ export default class CreateDiscussion extends Component {
                   title: e.target.value,
             })
       }
+      //This code is based on a video by CodingEntrepreneurs on Youtube
+      //See https://www.youtube.com/watch?v=S6Zus2bLJCc
       onDrop(files) {
             this.setState({
                   image: files[0],
@@ -81,7 +83,6 @@ export default class CreateDiscussion extends Component {
 
       render() {
             const maxSize = 5242880;
-            // const maxSize = 5;
 
             const { imgSrc } = this.state;
             return (
@@ -92,28 +93,31 @@ export default class CreateDiscussion extends Component {
                                     <h2>Create a post</h2>
                                     <form className="upload-form" onSubmit={this.handleSubmit} noValidate>
                                           <input type="text" placeholder="Title" id="title" required onChange={this.handleTitleChange}></input>
-                                          {this.state.showDropzone ? <Dropzone onDrop={this.onDrop}
-                                                accept="image/png, image/jpeg, image/gif"
-                                                multiple={false}
-                                                minSize={0}
-                                                maxSize={maxSize}>
-                                                {({ getRootProps, getInputProps, isDragActive, isDragReject, rejectedFiles }) => {
-                                                      const isFileTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;
-                                                      return (
-                                                            <div {...getRootProps()} className="upload">
-                                                                  <input {...getInputProps()} required />
-                                                                  {!isDragActive && 'Click here or drop a file to upload!'}
-                                                                  {isDragActive && !isDragReject && "Drop it like it's hot!"}
-                                                                  {isDragReject && "File type not accepted"}
-                                                                  {isFileTooLarge && (
-                                                                        <div className="text-danger too-large-text">
-                                                                              File is too large
+                                          {this.state.showDropzone ?
+                                                //This code is by James King on upmostly.com
+                                                //See https://upmostly.com/tutorials/react-dropzone-file-uploads-react
+                                                <Dropzone onDrop={this.onDrop}
+                                                      accept="image/png, image/jpeg, image/gif"
+                                                      multiple={false}
+                                                      minSize={0}
+                                                      maxSize={maxSize}>
+                                                      {({ getRootProps, getInputProps, isDragActive, isDragReject, rejectedFiles }) => {
+                                                            const isFileTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;
+                                                            return (
+                                                                  <div {...getRootProps()} className="upload">
+                                                                        <input {...getInputProps()} required />
+                                                                        {!isDragActive && 'Click here or drop a file to upload!'}
+                                                                        {isDragActive && !isDragReject && "Drop it like it's hot!"}
+                                                                        {isDragReject && "File type not accepted"}
+                                                                        {isFileTooLarge && (
+                                                                              <div className="text-danger too-large-text">
+                                                                                    File is too large
                                                                         </div>)}
-                                                            </div>
-                                                      )
-                                                }
-                                                }
-                                          </Dropzone> : null}
+                                                                  </div>
+                                                            )
+                                                      }
+                                                      }
+                                                </Dropzone> : null}
                                           <img src={imgSrc}></img>
                                           <div id="button-container">
                                                 <Link to="/home" className="link"><button className="button" id="cancel">Cancel</button></Link>

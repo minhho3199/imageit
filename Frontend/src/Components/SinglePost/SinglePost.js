@@ -151,11 +151,12 @@ class SinglePost extends Component {
                     {(this.props.authorID === this.state.userID) ?
                         <DropdownButton className="dropdown-button" title="">
                             {(!this.props.comments.length && !this.state.counters.length) ?
+                                /*This code is based on code by Tyler McGinnis on Youtube 
+                                See https://www.youtube.com/watch?v=nmbX2QL7ZJc*/
                                 <Link to={{
                                     pathname: "/update/" + this.props.id,
                                     state: {
                                         title: this.props.title
-                                        // id: this.props.id
                                     }
                                 }}>
                                     <Dropdown.Item as="button" id="dropdown-items">Update Post</Dropdown.Item></Link>
@@ -167,7 +168,7 @@ class SinglePost extends Component {
                     <span>by <em>{this.props.author}</em></span>
                 </div>
                 <div className="pic-container">
-                    <img src={base64Flag + this.arrayBufferToBase64(this.props.image)} className="picture"></img>
+                    <img src={base64Flag + this.arrayBufferToBase64(this.props.image)} className="picture" alt=""></img>
                 </div>
                 <FacebookCounter
                     counters={this.state.counters}
@@ -177,10 +178,12 @@ class SinglePost extends Component {
                     <button onClick={this.handleLikedClick}><FontAwesomeIcon icon={faThumbsUp} /> Like</button>
                     <button onClick={this.handleCommentClick}><FontAwesomeIcon icon={faComment} /> Comment</button>
                 </div>
-                {this.state.showSelector ?
-                    <FacebookSelector onSelect={this.handleSelect}></FacebookSelector> : null}
+                {
+                    this.state.showSelector ?
+                        <FacebookSelector onSelect={this.handleSelect}></FacebookSelector> : null
+                }
                 {this.state.comments ? <Comments postID={this.props.id}></Comments> : null}
-            </div>
+            </div >
         );
     }
 }

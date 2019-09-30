@@ -18,6 +18,8 @@ class Routes extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/create" component={CreatePost} />
           <Route exact path="/profile" component={Profile} />
+          {/*This code is based on code by Tyler McGinnis on Youtube 
+          See https://www.youtube.com/watch?v=nmbX2QL7ZJc*/}
           <Route exact path="/update/:id" component={UpdatePost} />
         </Switch>
       </div>

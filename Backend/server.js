@@ -12,6 +12,8 @@ app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 
+//This code is based on the tutorial by Rishi Prasad on blog.bitsrc.io
+//See https://blog.bitsrc.io/build-a-login-auth-app-with-mern-stack-part-1-c405048e3669
 //Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
     .then(() => console.log("MongoDB connected successfully"))
