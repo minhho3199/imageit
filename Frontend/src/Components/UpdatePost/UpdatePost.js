@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import "./UpdatePost.css"
 import { Link } from "react-router-dom"
 import Navbar from '../Header/Navbar/Navbar'
 import Dropzone from 'react-dropzone'
