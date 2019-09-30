@@ -20,10 +20,6 @@ const PostSchema = new Schema({
         ref: "users",
         required: true,
     },
-    active: {
-        type: Boolean,
-        default: true,
-    },
     reactions: [{
         emoji: {type: String},
         by: {type: Schema.Types.ObjectId, ref: "users", required: true},

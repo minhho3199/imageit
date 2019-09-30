@@ -28,22 +28,26 @@ router.post("/create", auth, upload.single("image"), (req, res) => {
 })
 
 //getting all the posts from the database
-router.get("/", (req, res) => {
+router.get("/get", (req, res) => {
+    //This code by user omererbil on github.com
+    //See https://github.com/wprl/baucis/issues/303
+    const count = Number(req.query.count);
+    //
     Post.find({}, (err, img) => {
         if (err) {
             res.send(err);
         }
         res.contentType('json');
-        res.send(img);
-    })
-        .sort({
-            _id: -1
-        })
+        res.json(img);
+    }).sort({
+        _id: -1
+    }).skip(count).limit(5)
         .populate('author', 'name')
-        .exec(err => {
+        .exec((err, img) => {
             if (err) {
                 console.log(err);
             }
+            // console.log(img);
         })
 })
 
@@ -96,16 +100,16 @@ router.delete("/delete/:postID", auth, (req, res) => {
     })
 })
 
-router.post("/update/:postID", auth, upload.single("image"), (req, res) =>  {
+router.post("/update/:postID", auth, upload.single("image"), (req, res) => {
     const post = {
         title: req.body.title,
         image: fs.readFileSync(req.file.path),
         contentType: req.file.mimetype,
         author: req.body.author,
     };
-    
-    Post.findOneAndUpdate({_id: req.params.postID}, {$set: post }, (err, obj) => {
-        if(err) console.log(err);
+
+    Post.findOneAndUpdate({ _id: req.params.postID }, { $set: post }, (err, obj) => {
+        if (err) console.log(err);
         res.send(obj);
     })
 })
