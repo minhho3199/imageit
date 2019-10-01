@@ -17,7 +17,9 @@ export default class CreateDiscussion extends Component {
                   image: null,
                   userId: '',
                   imgSrc: null,
-                  showDropzone: true
+                  showDropzone: true,
+                  imageError: "",
+                  titleError: "",
             }
       }
 
@@ -37,6 +39,7 @@ export default class CreateDiscussion extends Component {
       handleTitleChange(e) {
             this.setState({
                   title: e.target.value,
+                  titleError: "",
             })
       }
       //This code is based on a video by CodingEntrepreneurs on Youtube
@@ -56,29 +59,41 @@ export default class CreateDiscussion extends Component {
                   )
                   reader.readAsDataURL(currentFile)
                   this.setState({
-                        showDropzone: false
+                        showDropzone: false,
+                        imageError: "",
                   })
             }
       }
       handleSubmit(e) {
             e.preventDefault();
-            const token = localStorage.usertoken;
-            var config = {
-                  headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': token,
-                  },
-            };
-            const fd = new FormData();
-            fd.append('title', this.state.title);
-            fd.append('image', this.state.image);
-            fd.append('author', this.state.userId);
-            axios.post('http://localhost:5000/api/posts/create', fd, config)
-                  .then(result => {
-                        console.log(result);
+            if (!this.state.showDropzone && this.state.title !== "") {
+                  const token = localStorage.usertoken;
+                  var config = {
+                        headers: {
+                              'Content-Type': 'application/x-www-form-urlencoded',
+                              'Authorization': token,
+                        },
+                  };
+                  const fd = new FormData();
+                  fd.append('title', this.state.title);
+                  fd.append('image', this.state.image);
+                  fd.append('author', this.state.userId);
+                  axios.post('http://localhost:5000/api/posts/create', fd, config)
+                        .then(result => {
+                              console.log(result);
+                        })
+                        .then(() => this.props.history.push('/home'))
+                        .catch(err => console.log(err))
+            } else if(this.state.title === ""){
+                  this.setState({
+                        titleError: "This field is required",
                   })
-                  .then(() => this.props.history.push('/home'))
-                  .catch(err => console.log(err))
+            } else {
+                  this.setState({
+                        imageError: "You have not attached a picture yet"
+                  })
+            }
+
       }
 
       render() {
@@ -91,8 +106,9 @@ export default class CreateDiscussion extends Component {
                         <div style={{ paddingTop: 5 + '%' }}>
                               <div className="create-container">
                                     <h2>Create a post</h2>
-                                    <form className="upload-form" onSubmit={this.handleSubmit}>
+                                    <form className="upload-form" onSubmit={this.handleSubmit} noValidate>
                                           <input type="text" placeholder="Title" id="title" required onChange={this.handleTitleChange}></input>
+                                          <span className="error-text">{this.state.titleError}</span>
                                           {this.state.showDropzone ?
                                                 //This code is by James King on upmostly.com
                                                 //See https://upmostly.com/tutorials/react-dropzone-file-uploads-react
@@ -118,7 +134,8 @@ export default class CreateDiscussion extends Component {
                                                       }
                                                       }
                                                 </Dropzone> : null}
-                                          <img src={imgSrc}></img>
+                                          <img src={imgSrc} alt=""></img>
+                                          <span className="error-text">{this.state.imageError}</span>
                                           <div id="button-container">
                                                 <Link to="/home" className="link"><button className="button" id="cancel">Cancel</button></Link>
                                                 <button className="button" id="submit">Submit</button>

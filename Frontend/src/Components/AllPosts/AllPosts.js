@@ -14,14 +14,17 @@ class AllPosts extends Component {
                   loading: true,
                   count: 0,
                   hasMore: true,
-                  sort: this.props.sort
+                  sort: this.props.sort,
             }
       }
+
+      //Update the component after receiving a new sort props from Homepage.js
       componentWillReceiveProps(nextProps) {
             this.setState({
                   sort: nextProps.sort,
                   count: 0,
-                  hasMore: true
+                  hasMore: true,
+                  loading: true,
             }, () => {
                   if (this.state.sort === "Sort by: New ") {
                         axios.get(`http://localhost:5000/api/posts/new?count=${this.state.count}`)
@@ -45,6 +48,7 @@ class AllPosts extends Component {
             })
 
       }
+
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
       componentDidMount() {
@@ -58,7 +62,7 @@ class AllPosts extends Component {
                                     count: this.state.count + 5
                               })
                         })
-            } 
+            }
             else if (this.state.sort === "Sort by: Popular ") {
                   axios.get(`http://localhost:5000/api/posts/popular?count=${this.state.count}`)
                         .then(res => {
@@ -68,12 +72,12 @@ class AllPosts extends Component {
                                     count: this.state.count + 5
                               })
                         })
-            } 
+            }
       }
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
       loadMore() {
-            const {count} = this.state
+            const { count } = this.state
             this.setState({
                   count: this.state.count + 5,
             })
@@ -113,20 +117,18 @@ class AllPosts extends Component {
       render() {
             const posts =
                   <div>
-                        {
-                              this.state.posts.map(post => (
-                                    <div className="discussion-container" key={post._id}>
-                                          {/*Passes the post state to SinglePost component as props */}
-                                          <SinglePost id={post._id}
-                                                title={post.title}
-                                                author={post.author.name}
-                                                authorID={post.author._id}
-                                                image={post.image.data}
-                                                reactions={post.reactions}
-                                                comments={post.comment} />
-                                    </div>
-                              ))
-                        }
+                        {this.state.posts.map(post => (
+                              <div className="discussion-container" key={post._id}>
+                                    {/*Passes the post state to SinglePost component as props */}
+                                    <SinglePost id={post._id}
+                                          title={post.title}
+                                          author={post.author.name}
+                                          authorID={post.author._id}
+                                          image={post.image.data}
+                                          reactions={post.reactions}
+                                          comments={post.comment} />
+                              </div>
+                        ))}
                   </div>
             return (
                   <div id="container">
@@ -152,10 +154,9 @@ class AllPosts extends Component {
                                           </div>
                                     }>
                                     {posts}
-                              </InfiniteScroll>}
-
+                              </InfiniteScroll>
+                        }
                   </div>
-
             );
       }
 }

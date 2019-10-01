@@ -33,20 +33,20 @@ h2 {
 }
 #cancel {
       background: transparent;
-      color: #0079d3;
+      color: #007bff;
       margin-right: 10px;
 }
 #submit {
-      background: #0079d3;
+      background: #007bff;
       color: white;
 }
 
 #cancel:hover {
-      filter:brightness(120%);
+      filter:brightness(80%);
       cursor: pointer;
 }
 #submit:hover {
-      filter: brightness(120%);
+      filter: brightness(90%);
       cursor: pointer;
 }
 
@@ -71,6 +71,8 @@ h2 {
 .link {
       display: flex;
       align-items: flex-end;
+}
+.link:hover {
       text-decoration: none;
 }
 .upload {

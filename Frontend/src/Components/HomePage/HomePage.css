@@ -18,14 +18,14 @@
 #create-post-button{
       width: 15vw;
       text-align: center;
-      border: 1px solid #0079d3;
+      border: 1px solid transparent;
       border-radius: 4px;
-      background: #0079d3;
+      background: #007bff;
       color: white;
       padding: 10px;  
-      transition: 0.3s;
+      transition: .3s
 }
 #create-post-button:hover {
       cursor: pointer;
-      filter:brightness(120%);
+      filter:brightness(90%);
 }

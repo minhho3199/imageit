@@ -17,7 +17,8 @@ export default class CreateDiscussion extends Component {
             userId: '',
             imgSrc: null,
             showDropzone: true,
-            error: "",
+            imageError: "",
+            titleError: "",
         }
     }
 
@@ -39,6 +40,7 @@ export default class CreateDiscussion extends Component {
     handleTitleChange(e) {
         this.setState({
             title: e.target.value,
+            titleError: "",
         })
     }
 
@@ -60,14 +62,14 @@ export default class CreateDiscussion extends Component {
             reader.readAsDataURL(currentFile)
             this.setState({
                 showDropzone: false,
-                error: "",
+                imageError: "",
             })
         }
     }
     handleSubmit(e) {
-        const {showDropzone} = this.state;
         e.preventDefault();
-        if(!showDropzone) {
+        if (!this.state.showDropzone && this.state.title !== "") {
+
             const token = localStorage.usertoken;
             var config = {
                 headers: {
@@ -86,9 +88,13 @@ export default class CreateDiscussion extends Component {
                 })
                 .then(() => this.props.history.push('/home'))
                 .catch(err => console.log(err))
+        } else if (this.state.title === "") {
+            this.setState({
+                titleError: "This field is required",
+            })
         } else {
             this.setState({
-                error: "You have not attached a picture yet", 
+                imageError: "You have not attached a picture yet",
             })
         }
 
@@ -104,8 +110,9 @@ export default class CreateDiscussion extends Component {
                 <div style={{ paddingTop: 5 + '%' }}>
                     <div className="create-container">
                         <h2>Update the Post</h2>
-                        <form className="upload-form" onSubmit={this.handleSubmit}>
+                        <form className="upload-form" onSubmit={this.handleSubmit} noValidate>
                             <input type="text" placeholder={title} id="title" required onChange={this.handleTitleChange}></input>
+                            <span className="error-text">{this.state.titleError}</span>
                             {this.state.showDropzone ?
                                 //This code is by James King on upmostly.com
                                 //See https://upmostly.com/tutorials/react-dropzone-file-uploads-react
@@ -132,7 +139,7 @@ export default class CreateDiscussion extends Component {
                                     }
                                 </Dropzone> : null}
                             <img src={imgSrc} alt=""></img>
-                            <span className="error-text">{this.state.error}</span>
+                            <span className="error-text">{this.state.imageError}</span>
                             <div id="button-container">
                                 <Link to="/home" className="link"><button className="button" id="cancel">Cancel</button></Link>
                                 <button className="button" id="submit">Submit</button>
