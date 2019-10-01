@@ -40,6 +40,27 @@ router.get("/new", (req, res) => {
         res.contentType('json');
         res.json(img);
     }).sort({
+        _id: -1
+    }).skip(count).limit(5)
+        .populate('author', 'name')
+        .exec((err, img) => {
+            if (err) {
+                console.log(err);
+            }
+        })
+})
+router.get("/popular", (req, res) => {
+    //This code by user omererbil on github.com
+    //See https://github.com/wprl/baucis/issues/303
+    const count = Number(req.query.count);
+    //
+    Post.find({}, (err, img) => {
+        if (err) {
+            res.send(err);
+        }
+        res.contentType('json');
+        res.json(img);
+    }).sort({
         reactCount: -1,
         _id: -1
     }).skip(count).limit(5)
