@@ -14,28 +14,36 @@ const PostSchema = new Schema({
         type: String,
         required: true,
     },
-    author: 
+    author:
     {
-        type: Schema.Types.ObjectId, 
+        type: Schema.Types.ObjectId,
         ref: "users",
         required: true,
     },
     reactions: [{
-        emoji: {type: String},
-        by: {type: Schema.Types.ObjectId, ref: "users", required: true},
- 
+        emoji: { type: String },
+        by: { type: Schema.Types.ObjectId, ref: "users", required: true },
+
     }],
     reactCount: {
         type: Number,
         default: 0
     },
     comment: [{
-        createBy: {type: Schema.Types.ObjectId, ref: "users", required: true},
-        image: {type: Buffer, required: true},
+        createBy: { type: Schema.Types.ObjectId, ref: "users", required: true },
+        image: { type: Buffer, required: true },
         contentType: {
             type: String,
             required: true,
         },
+        replies: [{
+            createBy: { type: Schema.Types.ObjectId, ref: "users", required: true },
+            image: { type: Buffer, required: true },
+            contentType: {
+                type: String,
+                required: true,
+            },
+        }]
     }]
 });
 

@@ -45,7 +45,6 @@ class SinglePost extends Component {
                     userID: decoded.id
                 });
             }
-            console.log(this.props.image);
         }
     }
 
@@ -167,7 +166,7 @@ class SinglePost extends Component {
                         </DropdownButton> : null}
                 </div>
                 <div className="posted-by-container">
-                    <span>by <em>{this.props.author}</em></span>
+                    <span>by <b>{this.props.author}</b></span>
                 </div>
                 <div className="pic-container">
                     <img src={base64Flag + this.arrayBufferToBase64(this.props.image)} className="picture" alt=""></img>
@@ -184,7 +183,7 @@ class SinglePost extends Component {
                     this.state.showSelector ?
                         <FacebookSelector onSelect={this.handleSelect}></FacebookSelector> : null
                 }
-                {this.state.comments ? <Comments postID={this.props.id}></Comments> : null}
+                {this.state.comments ? <Comments postID={this.props.id} comment={this.props.comments}></Comments> : null}
             </div >
         );
     }

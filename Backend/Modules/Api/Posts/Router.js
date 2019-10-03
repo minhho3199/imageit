@@ -85,6 +85,39 @@ router.post("/comment/:postID", auth, upload.single('image'), (req, res) => {
         .catch(err => res.send(err));
 })
 
+router.post("/comment/reply/:postID/:commentID", auth, upload.single('image'), (req, res) => {
+    const newReply = {
+        image: fs.readFileSync(req.file.path),
+        contentType: req.file.mimetype,
+        createBy: req.body.createBy,
+    }
+    Post.findOneAndUpdate({ _id: req.params.postID, "comment._id": req.params.commentID }, { $push: { "comment.$.replies": newReply } })
+        .then(data => {
+            res.send(data.comment.$.replies);
+        })
+        .catch(err => res.send(err));
+})
+
+router.get("/comment/reply/:postID/:commentID", (req, res) => {
+    var i = 0;
+    Post.findOne({ _id: req.params.postID }, (err, img) => {
+        if (err) res.send(err);
+        while (true) {
+            if (!(img.comment[i]._id.equals(req.params.commentID))) {
+                i++;
+            }
+            else {
+                break;
+            }
+        }
+        res.contentType('json');
+        res.send(img.comment[i].replies)
+    }).populate("comment.replies.createBy", "name")
+        .exec(err => {
+            if (err) console.log(err)
+        })
+})
+
 //Getting all the comments of the post
 router.get("/comment/:postID", (req, res) => {
     Post.findOne({ _id: req.params.postID }, (err, img) => {
@@ -103,9 +136,9 @@ router.post("/likes/:postID", auth, upload.single("emoji"), (req, res) => {
         emoji: req.body.emoji,
         by: req.body.by,
     }
-    Post.updateOne({ _id: req.params.postID }, { $pull: { reactions: { by: req.body.by } }}, (err, obj) => {
+    Post.updateOne({ _id: req.params.postID }, { $pull: { reactions: { by: req.body.by } } }, (err, obj) => {
         if (err) console.log(err);
-        Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { reactions: newReaction }, $inc: {reactCount: 1} })
+        Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { reactions: newReaction }, $inc: { reactCount: 1 } })
             .then((data) => {
                 res.send(data.reactions);
             })

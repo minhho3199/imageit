@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
-import './Comments.css';
+import './Reply.css'
 import Dropzone from 'react-dropzone';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios'
-import CommentList from "./CommentList/CommentList"
 
-class Comments extends Component {
+class Reply extends Component {
     constructor(props) {
         super(props);
         this.onDrop = this.onDrop.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.arrayBufferToBase64 = this.arrayBufferToBase64.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             image: null,
-            userId: '',
             imgSrc: null,
-            comments: [],
-            imageError: "",
+            imageError: '',
+            userId: '',
             imageAttached: false,
+            replies: [],
         }
     }
     componentDidMount() {
@@ -32,16 +30,15 @@ class Comments extends Component {
                     userId: decoded.id,
                 });
             }
-            axios.get("http://localhost:5000/api/posts/comment/" + this.props.postID)
+            axios.get("http://localhost:5000/api/posts/comment/reply/" + this.props.postID + "/" + this.props.commentID)
                 .then(res => {
                     this.setState({
-                        comments: res.data,
+                        replies: res.data,
                     })
                 })
                 .catch(err => console.log(err));
         }
     }
-
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
     arrayBufferToBase64(buffer) {
@@ -59,7 +56,6 @@ class Comments extends Component {
         })
     }
 
-
     handleSubmit(e) {
         e.preventDefault();
         if (this.state.imageAttached) {
@@ -73,7 +69,7 @@ class Comments extends Component {
             const fd = new FormData();
             fd.append('image', this.state.image);
             fd.append('createBy', this.state.userId);
-            axios.post('http://localhost:5000/api/posts/comment/' + this.props.postID, fd, config)
+            axios.post('http://localhost:5000/api/posts/comment/reply/' + this.props.postID + "/" + this.props.commentID, fd, config)
                 .then(result => {
                     console.log(result);
                     this.setState({
@@ -81,10 +77,10 @@ class Comments extends Component {
                         imgSrc: null,
                     })
                 }).then(() => {
-                    axios.get("http://localhost:5000/api/posts/comment/" + this.props.postID)
+                    axios.get("http://localhost:5000/api/posts/comment/reply/" + this.props.postID + "/" + this.props.commentID)
                         .then(res => {
                             this.setState({
-                                comments: res.data,
+                                replies: res.data,
                             })
                         })
                         .catch(err => console.log(err));
@@ -96,9 +92,6 @@ class Comments extends Component {
             })
         }
     }
-
-    //This code is based on a video by CodingEntrepreneurs on Youtube
-    //See https://www.youtube.com/watch?v=S6Zus2bLJCc
     onDrop(files) {
         this.setState({
             image: files[0],
@@ -122,11 +115,23 @@ class Comments extends Component {
     render() {
         const maxSize = 5242880;
         const { imgSrc } = this.state;
+        var base64Flag = 'data:image/jpeg;base64,';
         return (
             <div>
+                {this.state.replies.map(reply => (
+                    <div key={reply._id} className="reply-container">
+                        <div className="comment-author-container">
+                            <span><b>{reply.createBy.name}</b></span>
+                        </div>
+                        <div className="comment-pic-container">
+                            <img src={base64Flag + this.arrayBufferToBase64(reply.image.data)}
+                                className="comment-pic" alt=""></img>
+                        </div>
+                    </div>
+                ))}
                 <form className="comment-upload-container" method="POST">
                     {/*This code is by James King on upmostly.com
-                    See https://upmostly.com/tutorials/react-dropzone-file-uploads-react*/}
+                         See https://upmostly.com/tutorials/react-dropzone-file-uploads-react*/}
                     <Dropzone onDrop={this.onDrop}
                         accept="image/png, image/jpeg, image/gif"
                         multiple={false}
@@ -143,7 +148,7 @@ class Comments extends Component {
                                     {isFileTooLarge && (
                                         <div className="text-danger too-large-text">
                                             File is too large
-                                    </div>)}
+                                         </div>)}
                                 </div>
                             )
                         }
@@ -164,19 +169,11 @@ class Comments extends Component {
                             onClick={this.handleSubmit}>Comment</button>
                     </div>
                 </form>
-                {this.state.comments.map(comment => (
-                    <div key={comment._id} className="comment-container">
-                        <CommentList
-                            postID={this.props.postID}
-                            commentID={comment._id}
-                            author={comment.createBy.name}
-                            image={comment.image.data}></CommentList>
-                    </div>
 
-                ))}
             </div>
+
         );
     }
 }
 
-export default Comments;
+export default Reply;

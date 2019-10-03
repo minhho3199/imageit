@@ -94,3 +94,7 @@ h2 {
 .upload-form{
       width: 80%;
 }
+.preview-image {
+      max-height: 512px;
+      max-width: 100%;
+}

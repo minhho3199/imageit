@@ -134,7 +134,7 @@ export default class CreateDiscussion extends Component {
                                                       }
                                                       }
                                                 </Dropzone> : null}
-                                          <img src={imgSrc} alt=""></img>
+                                          <img className="preview-image" src={imgSrc} alt="" ></img>
                                           <span className="error-text">{this.state.imageError}</span>
                                           <div id="button-container">
                                                 <Link to="/home" className="link"><button className="button" id="cancel">Cancel</button></Link>

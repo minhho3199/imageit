@@ -49,7 +49,7 @@ class Navbar extends Component {
           name: decoded.name,
         })
       }
-    } 
+    }
   }
   showMenu(e) {
     e.preventDefault();
@@ -75,8 +75,6 @@ class Navbar extends Component {
     const userLink = (
       <div id="navbar-after">
         <DropdownButton id="dropdown-basic-button " className="dropdown-button" title={this.state.name + " "}>
-          <Link to="/profile" id="profile-link"><Dropdown.Item as="button" id="dropdown-items">
-            <FontAwesomeIcon icon={faUser} />&nbsp;&nbsp; My Profile</Dropdown.Item></Link>
           <Dropdown.Item as="button" onClick={this.logOut} id="dropdown-items"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;&nbsp; Logout</Dropdown.Item>
         </DropdownButton>
       </div>

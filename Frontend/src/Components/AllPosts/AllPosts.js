@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./AllPosts.css";
 import SinglePost from '../SinglePost/SinglePost';
-import Spinner from 'react-bootstrap/Spinner';
+import SpinnerComp from '../Spinner/Spinner'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
 
@@ -52,7 +52,6 @@ class AllPosts extends Component {
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
       componentDidMount() {
-            console.log(this.state.sort === "Sort by: New ")
             if (this.state.sort === "Sort by: New ") {
                   axios.get(`http://localhost:5000/api/posts/new?count=${this.state.count}`)
                         .then(res => {
@@ -134,25 +133,14 @@ class AllPosts extends Component {
                   <div id="container">
                         {/*If the data hasn't been fetched yet, a spinner will appear as placeholder */}
                         {this.state.loading ?
-                              <div className="discussion-container loading-container">
-                                    <Spinner animation="border" role="status">
-                                          <span className="sr-only">Loading...</span>
-                                    </Spinner>
-                              </div> :
+                              <SpinnerComp /> :
                               //This code is based on the answer by Traversy Media on Youtube
                               //See https://www.youtube.com/watch?v=gk_6BKiy6X4
                               <InfiniteScroll
                                     dataLength={this.state.posts.length}
                                     next={this.loadMore}
                                     hasMore={this.state.hasMore}
-                                    endMessage="You have reached the end"
-                                    loader={
-                                          <div className="discussion-container loading-container">
-                                                <Spinner animation="border" role="status">
-                                                      <span className="sr-only">Loading...</span>
-                                                </Spinner>
-                                          </div>
-                                    }>
+                                    loader={<SpinnerComp />}>
                                     {posts}
                               </InfiniteScroll>
                         }
