@@ -78,7 +78,7 @@ class SinglePost extends Component {
         const fd = new FormData();
         fd.append('emoji', emoji);
         fd.append('by', this.state.userID);
-        axios.post('http://localhost:5000/api/posts/likes/' + this.props.id, fd, config)
+        axios.post('http://localhost:8080/api/posts/likes/' + this.props.id, fd, config)
             .then(result => {
                 console.log(result);
             })
@@ -94,7 +94,7 @@ class SinglePost extends Component {
                 'Authorization': token,
             },
         };
-        axios.delete("http://localhost:5000/api/posts/delete/" + this.props.id, config)
+        axios.delete("http://localhost:8080/api/posts/delete/" + this.props.id, config)
             .then(() => this.props.history.push('/home'))
             .catch(err => console.log(err));
     }

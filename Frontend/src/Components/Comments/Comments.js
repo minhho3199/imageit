@@ -32,7 +32,7 @@ class Comments extends Component {
                     userId: decoded.id,
                 });
             }
-            axios.get("http://localhost:5000/api/posts/comment/" + this.props.postID)
+            axios.get("http://localhost:8080/api/posts/comment/" + this.props.postID)
                 .then(res => {
                     this.setState({
                         comments: res.data,
@@ -73,7 +73,7 @@ class Comments extends Component {
             const fd = new FormData();
             fd.append('image', this.state.image);
             fd.append('createBy', this.state.userId);
-            axios.post('http://localhost:5000/api/posts/comment/' + this.props.postID, fd, config)
+            axios.post('http://localhost:8080/api/posts/comment/' + this.props.postID, fd, config)
                 .then(result => {
                     console.log(result);
                     this.setState({
@@ -81,7 +81,7 @@ class Comments extends Component {
                         imgSrc: null,
                     })
                 }).then(() => {
-                    axios.get("http://localhost:5000/api/posts/comment/" + this.props.postID)
+                    axios.get("http://localhost:8080/api/posts/comment/" + this.props.postID)
                         .then(res => {
                             this.setState({
                                 comments: res.data,

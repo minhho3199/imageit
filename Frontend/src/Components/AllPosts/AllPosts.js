@@ -27,7 +27,7 @@ class AllPosts extends Component {
                   loading: true,
             }, () => {
                   if (this.state.sort === "Sort by: New ") {
-                        axios.get(`http://localhost:5000/api/posts/new?count=${this.state.count}`)
+                        axios.get(`http://localhost:8080/api/posts/new?count=${this.state.count}`)
                               .then(res => {
                                     this.setState({
                                           loading: false,
@@ -36,7 +36,7 @@ class AllPosts extends Component {
                                     })
                               })
                   } else if (this.state.sort === "Sort by: Popular ") {
-                        axios.get(`http://localhost:5000/api/posts/popular?count=${this.state.count}`)
+                        axios.get(`http://localhost:8080/api/posts/popular?count=${this.state.count}`)
                               .then(res => {
                                     this.setState({
                                           loading: false,
@@ -53,7 +53,7 @@ class AllPosts extends Component {
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
       componentDidMount() {
             if (this.state.sort === "Sort by: New ") {
-                  axios.get(`http://localhost:5000/api/posts/new?count=${this.state.count}`)
+                  axios.get(`http://localhost:8080/api/posts/new?count=${this.state.count}`)
                         .then(res => {
                               this.setState({
                                     loading: false,
@@ -63,7 +63,7 @@ class AllPosts extends Component {
                         })
             }
             else if (this.state.sort === "Sort by: Popular ") {
-                  axios.get(`http://localhost:5000/api/posts/popular?count=${this.state.count}`)
+                  axios.get(`http://localhost:8080/api/posts/popular?count=${this.state.count}`)
                         .then(res => {
                               this.setState({
                                     loading: false,
@@ -81,7 +81,7 @@ class AllPosts extends Component {
                   count: this.state.count + 5,
             })
             if (this.state.sort === "Sort by: New ") {
-                  axios.get(`http://localhost:5000/api/posts/new?count=${count}`)
+                  axios.get(`http://localhost:8080/api/posts/new?count=${count}`)
                         .then(res => {
                               this.setState({
                                     loading: false,
@@ -96,7 +96,7 @@ class AllPosts extends Component {
                               })
                         })
             } else if (this.state.sort === "Sort by: Popular ") {
-                  axios.get(`http://localhost:5000/api/posts/popular?count=${count}`)
+                  axios.get(`http://localhost:8080/api/posts/popular?count=${count}`)
                         .then(res => {
                               this.setState({
                                     loading: false,

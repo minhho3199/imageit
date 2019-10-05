@@ -10,7 +10,7 @@ class Leaderboards extends Component {
         }
     }
     componentDidMount() {
-        axios.get("http://localhost:5000/api/users/leaderboards")
+        axios.get("http://localhost:8080/api/users/leaderboards")
             .then(res => {
                 this.setState({
                     users: res.data

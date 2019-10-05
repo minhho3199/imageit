@@ -75,7 +75,7 @@ export default class Signup extends Component {
                   this.setState({
                         passMatch: "",
                   });
-                  axios.post("http://localhost:5000/api/users/register", {
+                  axios.post("http://localhost:8080/api/users/register", {
                         name: this.state.name,
                         email: this.state.email,
                         password: this.state.password,

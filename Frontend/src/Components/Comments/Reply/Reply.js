@@ -30,7 +30,7 @@ class Reply extends Component {
                     userId: decoded.id,
                 });
             }
-            axios.get("http://localhost:5000/api/posts/comment/reply/" + this.props.postID + "/" + this.props.commentID)
+            axios.get("http://localhost:8080/api/posts/comment/reply/" + this.props.postID + "/" + this.props.commentID)
                 .then(res => {
                     this.setState({
                         replies: res.data,
@@ -69,7 +69,7 @@ class Reply extends Component {
             const fd = new FormData();
             fd.append('image', this.state.image);
             fd.append('createBy', this.state.userId);
-            axios.post('http://localhost:5000/api/posts/comment/reply/' + this.props.postID + "/" + this.props.commentID, fd, config)
+            axios.post('http://localhost:8080/api/posts/comment/reply/' + this.props.postID + "/" + this.props.commentID, fd, config)
                 .then(result => {
                     console.log(result);
                     this.setState({
@@ -77,7 +77,7 @@ class Reply extends Component {
                         imgSrc: null,
                     })
                 }).then(() => {
-                    axios.get("http://localhost:5000/api/posts/comment/reply/" + this.props.postID + "/" + this.props.commentID)
+                    axios.get("http://localhost:8080/api/posts/comment/reply/" + this.props.postID + "/" + this.props.commentID)
                         .then(res => {
                             this.setState({
                                 replies: res.data,

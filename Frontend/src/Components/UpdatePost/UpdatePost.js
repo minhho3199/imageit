@@ -82,7 +82,7 @@ export default class CreateDiscussion extends Component {
             fd.append('title', this.state.title);
             fd.append('image', this.state.image);
             fd.append('author', this.state.userId);
-            axios.post('http://localhost:5000/api/posts/update/' + id, fd, config)
+            axios.post('http://localhost:8080/api/posts/update/' + id, fd, config)
                 .then(result => {
                     console.log(result)
                 })
