@@ -71,4 +71,16 @@ router.post('/login', (req, res) => {
                   res.send("error: " + err);
             })
 })
+
+router.get('/leaderboards', (req, res) => {
+      User.find({}, (err, user) => {
+            if(err) {
+                  res.send(err)
+            }
+            res.contentType("json");
+            res.send(user);
+      }).sort ({
+            postCount: -1
+      }).limit(5)
+})
 module.exports = router;

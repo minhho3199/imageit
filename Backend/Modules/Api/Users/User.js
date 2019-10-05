@@ -19,6 +19,10 @@ const UserSchema = new Schema({
             type: Date,
             default: Date.now,
       },
+      postCount: {
+            type: Number,
+            default: 0
+      }
 });
 
 //Export the Schema so that it can be used outside

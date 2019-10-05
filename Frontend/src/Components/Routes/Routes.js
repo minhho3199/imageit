@@ -6,6 +6,7 @@ import CreatePost from '../CreatePost/CreatePost';
 import Signup from '../Signup/Signup'
 import LandingPage from "../LandingPage/LandingPage";
 import UpdatePost from '../UpdatePost/UpdatePost'
+
 class Routes extends Component {
   render() {
     return (

@@ -23,7 +23,13 @@ router.post("/create", auth, upload.single("image"), (req, res) => {
         author: req.body.author,
     })
     newPost.save()
-        .then(post => res.json(post))
+        .then(post => {
+            User.findByIdAndUpdate({ _id: req.body.author }, { $inc: { postCount: 1 } })
+                .then(data => {
+                    console.log(data);
+                })
+            res.json(post)
+        })
         .catch(err => res.json(err));
 })
 
@@ -148,9 +154,16 @@ router.post("/likes/:postID", auth, upload.single("emoji"), (req, res) => {
 
 //Delete a post
 router.delete("/delete/:postID", auth, (req, res) => {
-    Post.findOne({ _id: req.params.postID }).deleteOne().exec(err => {
-        if (err) console.log(err);
+    Post.findOne({ _id: req.params.postID }, (err, post) => {
+        User.findOneAndUpdate({ _id: post.author }, { $inc: { postCount: -1 } }, (err, obj) => {
+            Post.findOne({ _id: req.params.postID }).deleteOne()
+            .exec((err, post) => {
+                if (err) console.log(err);
+            })
+        })
     })
+
+
 })
 
 router.post("/update/:postID", auth, upload.single("image"), (req, res) => {

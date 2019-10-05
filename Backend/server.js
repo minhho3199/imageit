@@ -5,7 +5,7 @@ const users = require('./Modules/Api/Users/Router');
 const posts = require('./Modules/Api/Posts/Router');
 
 const app = express();
-const PORT = 5000;
+const PORT = 5000 || 8080;
 
 require('dotenv').config();
 app.use(cors());

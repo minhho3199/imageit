@@ -1,0 +1,36 @@
+#leaderboards-container {
+    background: white;
+    margin-left: 15px;
+    margin-top: 15px;
+    
+}
+#leaderboards-header-container h4 {
+    padding: 10px;
+    margin: 0;
+    border-bottom: thin solid lightgray;
+    color: #007bff
+}
+
+#list {
+    padding: 0;
+    border-bottom: thin solid lightgray;
+    list-style: none;
+    margin: 0
+}
+#user-list {
+    border-bottom: thin solid lightgray;
+    padding: 10 10 0 10;
+    display: flex;
+    justify-content: flex-start
+}
+#user-list span {
+    padding: 0 10 0 0;
+}
+#user-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0
+}
+#user-container p{
+    margin: 0
+}

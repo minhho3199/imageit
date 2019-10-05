@@ -6,7 +6,7 @@ import Navbar from '../Header/Navbar/Navbar'
 import ScrollUpButton from "react-scroll-up-button";
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
-
+import Leaderboards from '../Leaderboards/Leaderboards'
 class HomePage extends Component {
       constructor(props) {
             super(props);
@@ -39,7 +39,7 @@ class HomePage extends Component {
             return (
                   <div style={{ width: 100 + '%' }}>
                         <Navbar></Navbar>
-                        <div id="content-container">
+                        <div id="sort-container">
                               <DropdownButton alignRight title={this.state.sort}>
                                     <Dropdown.Item as="button" id="dropdown-items" onClick={this.handleNewSort}>New</Dropdown.Item>
                                     <Dropdown.Item as="button" id="dropdown-items" onClick={this.handlePopularSort}>Popular</Dropdown.Item>
@@ -52,6 +52,7 @@ class HomePage extends Component {
 
                               <div id="sidebar-container">
                                     <Link to="/create" id="create-post-container"><button id="create-post-button">Create Post</button></Link>
+                                    <Leaderboards></Leaderboards>
                               </div>
                               <ScrollUpButton style={{ background: '#0079d3' }}></ScrollUpButton>
                         </div >
