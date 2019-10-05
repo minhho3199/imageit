@@ -1,0 +1,12 @@
+runtime: nodejs
+env: flex
+
+manual_scaling: 
+  instances: 1
+
+handlers:
+  - url: /
+    static_files: Client/build/index.html
+    upload: Client/build/index.html
+  - url: /
+    static_dir: Client/build

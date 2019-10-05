@@ -1,25 +1,29 @@
 {
-    "name": "imageit",
-    "version": "1.0.0",
-    "private": true,
-    "license": "MIT",
-    "scripts": {
-        "postinstall": "run-p install:Backend install:Frontend",
-        "install:Backend": "cd Backend && npm install",
-        "install:Frontend": "cd FrontEnd && npm install",
-        "start": "run-p start:Backend start:Frontend",
-        "start:Backend": "npm run start --prefix Backend",
-        "start:Frontend": "npm run start --prefix Frontend",
-        "build": "run-p build:Backend build:Frontend",
-        "build:Backend": "cd Backend && npm run build && cd ..",
-        "build:Frontend": "cd Frontend && npm run build && cd ..",
-        "prestart:docker": "npm run build",
-        "start:docker": "docker-compose -f docker/docker-compose.yml up -d --build",
-        "poststart:docker": "opn http://localhost:8000/",
-        "stop:docker": "docker-compose -f docker/docker-compose.yml down"
-    },
-    "devDependencies": {
-        "npm-run-all": "^4.0.2",
-        "opn-cli": "^3.1.0"
-    }
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix Client"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.11",
+    "multer": "^1.4.2",
+    "nodemon": "^1.19.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^11.1.0"
+  }
 }
