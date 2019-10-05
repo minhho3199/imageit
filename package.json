@@ -1,0 +1,25 @@
+{
+    "name": "imageit",
+    "version": "1.0.0",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "postinstall": "run-p install:Backend install:Frontend",
+        "install:Backend": "cd Backend && npm install",
+        "install:Frontend": "cd FrontEnd && npm install",
+        "start": "run-p start:Backend start:Frontend",
+        "start:Backend": "npm run start --prefix Backend",
+        "start:Frontend": "npm run start --prefix Frontend",
+        "build": "run-p build:Backend build:Frontend",
+        "build:Backend": "cd Backend && npm run build && cd ..",
+        "build:Frontend": "cd Frontend && npm run build && cd ..",
+        "prestart:docker": "npm run build",
+        "start:docker": "docker-compose -f docker/docker-compose.yml up -d --build",
+        "poststart:docker": "opn http://localhost:8000/",
+        "stop:docker": "docker-compose -f docker/docker-compose.yml down"
+    },
+    "devDependencies": {
+        "npm-run-all": "^4.0.2",
+        "opn-cli": "^3.1.0"
+    }
+}
