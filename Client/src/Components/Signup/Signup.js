@@ -71,7 +71,7 @@ export default class Signup extends Component {
                   this.setState({
                         passMatch: "Passwords must match",
                   });
-            } else if (password === password2) {
+            } else if (password === password2 && this.state.passLength === "") {
                   this.setState({
                         passMatch: "",
                   });
@@ -81,7 +81,7 @@ export default class Signup extends Component {
                         password: this.state.password,
                   })
                         .then(data => {
-                              if (data.status === 200 && data.statusText === "OK") {
+                              if (data.status === 200) {
                                     this.props.history.push("/login");
                               }
                         })
