@@ -78,6 +78,7 @@ class SinglePost extends Component {
         const fd = new FormData();
         fd.append('emoji', emoji);
         fd.append('by', this.state.userID);
+        fd.append('count', this.state.counters.length);
         axios.post('/api/posts/likes/' + this.props.id, fd, config)
             .then(result => {
                 console.log(result);

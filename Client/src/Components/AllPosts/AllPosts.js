@@ -22,6 +22,7 @@ class AllPosts extends Component {
       componentWillReceiveProps(nextProps) {
             this.setState({
                   sort: nextProps.sort,
+                  posts: [],
                   count: 0,
                   hasMore: true,
                   loading: true,
@@ -32,7 +33,7 @@ class AllPosts extends Component {
                                     this.setState({
                                           loading: false,
                                           posts: res.data,
-                                          count: this.state.count + 5
+                                          // count: this.state.count + 5
                                     })
                               })
                   } else if (this.state.sort === "Sort by: Popular ") {
@@ -41,7 +42,7 @@ class AllPosts extends Component {
                                     this.setState({
                                           loading: false,
                                           posts: res.data,
-                                          count: this.state.count + 5
+                                          // count: this.state.count + 5
                                     })
                               })
                   }
@@ -58,7 +59,7 @@ class AllPosts extends Component {
                               this.setState({
                                     loading: false,
                                     posts: res.data,
-                                    count: this.state.count + 5
+                                    // count: this.state.count + 5
                               })
                         })
             }
@@ -68,7 +69,7 @@ class AllPosts extends Component {
                               this.setState({
                                     loading: false,
                                     posts: res.data,
-                                    count: this.state.count + 5
+                                    // count: this.state.count + 5
                               })
                         })
             }
@@ -76,12 +77,11 @@ class AllPosts extends Component {
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
       loadMore() {
-            const { count } = this.state
             this.setState({
                   count: this.state.count + 5,
             })
             if (this.state.sort === "Sort by: New ") {
-                  axios.get(`/api/posts/new?count=${count}`)
+                  axios.get(`/api/posts/new?count=${this.state.count}`)
                         .then(res => {
                               this.setState({
                                     loading: false,
@@ -96,7 +96,7 @@ class AllPosts extends Component {
                               })
                         })
             } else if (this.state.sort === "Sort by: Popular ") {
-                  axios.get(`/api/posts/popular?count=${count}`)
+                  axios.get(`/api/posts/popular?count=${this.state.count}`)
                         .then(res => {
                               this.setState({
                                     loading: false,

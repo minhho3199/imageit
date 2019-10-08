@@ -68,7 +68,7 @@ router.get("/popular", (req, res) => {
         res.json(img);
     }).sort({
         reactCount: -1,
-        _id: -1
+        id: -1
     }).skip(count).limit(5)
         .populate('author', 'name')
         .exec((err, img) => {
@@ -144,7 +144,7 @@ router.post("/likes/:postID", auth, upload.single("emoji"), (req, res) => {
     }
     Post.updateOne({ _id: req.params.postID }, { $pull: { reactions: { by: req.body.by } } }, (err, obj) => {
         if (err) console.log(err);
-        Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { reactions: newReaction }, $inc: { reactCount: 1 } })
+        Post.findOneAndUpdate({ _id: req.params.postID }, { $push: { reactions: newReaction }, $set: {reactCount: req.body.count}})
             .then((data) => {
                 res.send(data.reactions);
             })
