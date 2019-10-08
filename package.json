@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix Client"
+    "client": "npm start --prefix Client",
+    "install": "npm install && cd Client && npm install && cd..",
+    "uploads": "mkdir uploads"
   },
   "author": "",
   "license": "ISC",
