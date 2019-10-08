@@ -10,7 +10,7 @@ A minimal Reddit/Facebook fusion clone app made using the following technologies
 
 ## Available Scripts
 
-In the project directory, please run these scrips in order:
+In the project directory, please run these scripts in order:
 
 ### `npm run uploads`
 
