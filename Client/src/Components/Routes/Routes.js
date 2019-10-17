@@ -9,6 +9,7 @@ import UpdatePost from '../UpdatePost/UpdatePost'
 
 class Routes extends Component {
   render() {
+    //This code is simply used to keep the website connected, allowing each button and container to maintan the same instead of creating a new one. This allows for consistancy and resource saving.
     return (
       <div>
         <Switch>

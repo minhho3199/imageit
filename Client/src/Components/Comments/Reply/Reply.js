@@ -41,6 +41,7 @@ class Reply extends Component {
     }
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
+    //This code is used in the same way as posting comments, however we change the variables around to better fit the orting of 'replies' to other comments with reactionary images.
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));

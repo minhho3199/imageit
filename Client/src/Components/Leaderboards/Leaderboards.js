@@ -18,6 +18,7 @@ class Leaderboards extends Component {
             })
             .catch(err => console.log(err))
     }
+    //The leaderboard is a visual realtime counter displayed upon the website. It keeps track of user Posts and ranks them, this is then used in sorting for user popularity.
     render() {
         return (
             <div id="leaderboards-container">

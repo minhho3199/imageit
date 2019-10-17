@@ -21,6 +21,7 @@ export default class Signup extends Component {
                   passMatch: "",
             }
       }
+      //This code is the one used prior to check and mantain password integrity.
       checkPassword() {
             const { password } = this.state;
             if (password.length < 5) {
@@ -63,7 +64,7 @@ export default class Signup extends Component {
             })
       }
 
-
+//This code overall works similar to the Login, however this is where the user intially creates all Data and what is stored/exnrypted onto the Database. To access it the user must choose the same username and password to be allowed entry and bypass the login system.
       handleSubmit(e) {
             const { password, password2 } = this.state;
             e.preventDefault();

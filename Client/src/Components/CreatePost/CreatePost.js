@@ -44,6 +44,7 @@ export default class CreateDiscussion extends Component {
       }
       //This code is based on a video by CodingEntrepreneurs on Youtube
       //See https://www.youtube.com/watch?v=S6Zus2bLJCc
+      //This code enables an 'imgae preview' which allows the user to view a smaller version of their image dispalyed on the website before upload. This is to ensure that they are properly adding the correct thing and improves quality of life.
       onDrop(files) {
             this.setState({
                   image: files[0],

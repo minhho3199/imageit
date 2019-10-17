@@ -100,7 +100,7 @@ class SinglePost extends Component {
             .catch(err => console.log(err));
     }
 
-    //Convert hex numbers of the image to Base64
+    //This code converts hex numbers displayed on the images to Base64. This allows us to properly maintan conversion of data without any major loss in detail or size.
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
     arrayBufferToBase64(buffer) {
@@ -149,7 +149,7 @@ class SinglePost extends Component {
             <div>
                 <div className="title-container">
                     <h3 className="title">{this.props.title}</h3>
-                    {/*If the current user is the person who created the post, show dropdown options */}
+                    {/*This code enables the current user of the post to view the dropdown interactions, which can display editing or deletion of post. */}
                     {(this.props.authorID === this.state.userID) ?
                         <DropdownButton className="dropdown-button" title="">
                             {(!this.props.comments.length && !this.state.counters.length) ?

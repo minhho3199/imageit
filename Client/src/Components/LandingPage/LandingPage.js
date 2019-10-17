@@ -11,6 +11,7 @@ class LandingPage extends Component {
             this.props.history.push("/home");
       }
     }
+    //This is the immediate display that overlays the entire website, to gain access you must click the Sign in or Create button.
     render() {
         return (
             <div>

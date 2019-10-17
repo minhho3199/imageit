@@ -18,7 +18,7 @@ class AllPosts extends Component {
             }
       }
 
-      //Update the component after receiving a new sort props from Homepage.js
+      //Updates the component after recieving the new sort props from Homepage.js
       componentWillReceiveProps(nextProps) {
             this.setState({
                   sort: nextProps.sort,
@@ -52,6 +52,7 @@ class AllPosts extends Component {
 
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
+      //This code enables us to on our main page 'scroll' indefinately. This will allow the user to only consume bandwith on what they wish to view instead of forcing pages onto them. It also enables a consistant smooth viewing experiance.
       componentDidMount() {
             if (this.state.sort === "Sort by: New ") {
                   axios.get(`/api/posts/new?count=${this.state.count}`)
@@ -59,7 +60,7 @@ class AllPosts extends Component {
                               this.setState({
                                     loading: false,
                                     posts: res.data,
-                                    // count: this.state.count + 5
+                                    
                               })
                         })
             }
@@ -69,7 +70,7 @@ class AllPosts extends Component {
                               this.setState({
                                     loading: false,
                                     posts: res.data,
-                                    // count: this.state.count + 5
+                                    
                               })
                         })
             }
@@ -87,7 +88,7 @@ class AllPosts extends Component {
                                     loading: false,
                                     posts: this.state.posts.concat(res.data)
                               }, () => {
-                                    //If there is no more data to be fetched, the loading spinner will not be shown
+                                    //As data is collected, a spinning loader is shown. This will reverse if there is no data to collect, and thus no spinning loader will appear.
                                     if (res.data.length === 0) {
                                           this.setState({
                                                 hasMore: false
@@ -102,7 +103,7 @@ class AllPosts extends Component {
                                     loading: false,
                                     posts: this.state.posts.concat(res.data)
                               }, () => {
-                                    //If there is no more data to be fetched, the loading spinner will not be shown
+                                    //This code is the same as the one prior.
                                     if (res.data.length === 0) {
                                           this.setState({
                                                 hasMore: false
@@ -118,7 +119,7 @@ class AllPosts extends Component {
                   <div>
                         {this.state.posts.map(post => (
                               <div className="discussion-container" key={post._id}>
-                                    {/*Passes the post state to SinglePost component as props */}
+                                    {/*This code passes the 'post' state to the SinglePost component as converts it to a prop.*/}
                                     <SinglePost id={post._id}
                                           title={post.title}
                                           author={post.author.name}
@@ -131,7 +132,7 @@ class AllPosts extends Component {
                   </div>
             return (
                   <div id="container">
-                        {/*If the data hasn't been fetched yet, a spinner will appear as placeholder */}
+                        {/*IWhen there is no data to collect, a spinner will appear to visually inform of impeding data collection*/}
                         {this.state.loading ?
                               <SpinnerComp /> :
                               //This code is based on the answer by Traversy Media on Youtube

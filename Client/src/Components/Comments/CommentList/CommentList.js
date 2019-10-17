@@ -14,6 +14,7 @@ class CommentList extends Component {
 
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
+    //This code enables us to view, distribute and store images via the virtual server MongoDB. This is the main way of collecting and storring our data which are images and displaying them onto our website to be viewed.
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));

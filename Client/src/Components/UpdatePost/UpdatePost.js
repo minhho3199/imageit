@@ -100,6 +100,7 @@ export default class CreateDiscussion extends Component {
 
     }
 
+    //This code is similar to the Delete post function, however instead this enables the user to resubmit and upload an image. Sending it over to the database to delete te current image and replace it with one that is uploaded.
     render() {
         const maxSize = 1500000;
         const { title } = this.props.location.state

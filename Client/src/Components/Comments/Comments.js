@@ -44,6 +44,7 @@ class Comments extends Component {
 
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
+    //This is one of the main features of the thread. This code allows other users to comment with reactionary images and upload them in response to the thread. These images are much smaller than the thread and can be replied to in response.
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));
@@ -99,6 +100,7 @@ class Comments extends Component {
 
     //This code is based on a video by CodingEntrepreneurs on Youtube
     //See https://www.youtube.com/watch?v=S6Zus2bLJCc
+    //This code enables the use of 'Dragging and dropping'. The main use and requirement of the website, as uploading the images via the website sends the data in store to the database to be stored and collected when required. This is used in both thread creation and replying to comments.
     onDrop(files) {
         this.setState({
             image: files[0],

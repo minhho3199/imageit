@@ -15,6 +15,8 @@ class Login extends Component {
                   fail: '',
             }
       }
+
+      //This large section of code is dedicated to retrieving the information created by the user via the website onto the database, and then gathering the information with a special Key that allows access to the website. There are multiple checks and security measures that go through like encryption, comparison to help prevention of multiple usernames or incorrect passwords.
       componentDidMount() {
             if("usertoken" in localStorage) {
                   this.props.history.push("/home");

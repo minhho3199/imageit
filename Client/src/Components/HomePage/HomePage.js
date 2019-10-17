@@ -45,6 +45,7 @@ class HomePage extends Component {
                   localStorage.setItem("sort", this.state.sort);
             })
       }
+      //The main code used for displaying the HomePage of the Website. This is where multiple buttons are contained in which transport the user to different sections of the website like uploading, signing out or deleting posts.
       render() {
             return (
                   <div style={{ width: 100 + '%' }}>
