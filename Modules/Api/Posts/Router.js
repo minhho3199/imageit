@@ -33,7 +33,7 @@ router.post("/create", auth, upload.single("image"), (req, res) => {
         .catch(err => res.json(err));
 })
 
-//getting all the posts from the database
+//This code gathers the 'Posts' placed on the website formt he databse, since we use an external server (MongoDB) we do not have the files stored locally.
 router.get("/new", (req, res) => {
     //This code by user omererbil on github.com
     //See https://github.com/wprl/baucis/issues/303
@@ -77,7 +77,7 @@ router.get("/popular", (req, res) => {
             }
         })
 })
-//Posting a new comment
+//This cose enables users who have created an account to post Comments on other peoples threads in the form of a reactionary image.
 router.post("/comment/:postID", auth, upload.single('image'), (req, res) => {
     const newComment = {
         image: fs.readFileSync(req.file.path),
@@ -124,7 +124,7 @@ router.get("/comment/reply/:postID/:commentID", (req, res) => {
         })
 })
 
-//Getting all the comments of the post
+//This code enables the access of converting the comments from the Database to visuale format and retrieving the data stored while also updating it in real time.
 router.get("/comment/:postID", (req, res) => {
     Post.findOne({ _id: req.params.postID }, (err, img) => {
         if (err) res.send(err);
@@ -136,7 +136,7 @@ router.get("/comment/:postID", (req, res) => {
         })
 })
 
-//Posting a new reaction for the post
+//This code enables the user of Reactionary Emojis which are able to be replied to by any person who is logged in. These reactionary images are tracked internally and shown visually to the user who views the thread.
 router.post("/likes/:postID", auth, upload.single("emoji"), (req, res) => {
     const newReaction = {
         emoji: req.body.emoji,
@@ -152,7 +152,7 @@ router.post("/likes/:postID", auth, upload.single("emoji"), (req, res) => {
     })
 })
 
-//Delete a post
+//When a user is logged in and has created a post themselfs, they are able to delete it from the website, this connects to the database and accesess it directly, removing it.
 router.delete("/delete/:postID", auth, (req, res) => {
     Post.findOne({ _id: req.params.postID }, (err, post) => {
         User.findOneAndUpdate({ _id: post.author }, { $inc: { postCount: -1 } }, (err, obj) => {

@@ -8,12 +8,12 @@ require('dotenv').config();
 //This code is based on an answer by "MoreCodes" on Youtube
 //See https://www.youtube.com/watch?v=S9maJY5JcZc
 router.post('/register', (req, res) => {
-      //See if user already exists
+      //This code checks current created users to see if they already exist/match. With this we then follow the ongoing prompts of code.
       User.findOne({
             email: req.body.email
       })
             .then(user => {
-                  // If user exists then error, else create new user
+                  // This code checks to see if a User already exists, it then informs the user to re-try with a different attempt
                   if (user) {
                         return res.status(400).json({
                               "error": "Email already exists",
@@ -24,7 +24,7 @@ router.post('/register', (req, res) => {
                               email: req.body.email,
                               password: req.body.password,
                         });
-                        //Hash password
+                        //This code uses Bcrypt to encode the Passwords created by the user, this is to increase security and maintain high levels of data safety.
                         bcrypt.hash(req.body.password, 10, (err, hash) => {
                               if (err) throw err;
                               newUser.password = hash;
@@ -38,31 +38,32 @@ router.post('/register', (req, res) => {
 
 //This code is based on an answer by "MoreCodes" on Youtube
 //See https://www.youtube.com/watch?v=S9maJY5JcZc
+//This code is used to create the connection between React, Mongo and NodeJS to create a proper Register and Login page. This of course is used by the users who wish to login or create accounts for the webpage.
 router.post('/login', (req, res) => {
       User.findOne({
             email: req.body.email
       })
             .then(user => {
-                  // If email is found
+                  // This code checks the users Email, similar to the username however Emails are more specific in terms of access.
                   if (user) {
-                        // Compare to see if the passwords match
+                        // This code checks to make sure the password entered by the user that was created and stored in the database matches what has been inputed on the login.
                         if (bcrypt.compareSync(req.body.password, user.password)) {
                               const payload = {
                                     id: user.id,
                                     name: user.name,
                                     email: user.email,
                               }
-                              // Sign the payload
+                              //This code is whats called a 'Sign the Payload' in where transmitting data safely between two destinations is important for keeping data and information stored safe.
                               let token = jwt.sign(payload, process.env.SECRET_KEY, {
-                                    // Time until log in expires
+                                    //This code simply allows the user to Idle for a period of time on the login page before being disconnected, this is due to needing to save bandwith and resources on more active users.
                                     expiresIn: '1h'
                               })
                               res.send(token);
-                              // If password doesn't match
+                              //This code recieves the information from the payload to see if the two passwords are matching from the de-cryption.
                         } else {
                               res.status(400).json({ error: "Password is incorrect" });
                         }
-                        // If email is not found
+                        //This code explains that if an email is not found or incorrect it will inform the user, like with the prior password code.
                   } else {
                         res.status(400).json({ error: "User does not exist" });
                   }
