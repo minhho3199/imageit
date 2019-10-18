@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Reply from "../Reply/Reply";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
+
+//This overall code enables us to view, distribute and store images via the virtual server MongoDB. This is the main way of collecting and storring our data which are images and displaying them onto our website to be viewed.
 class CommentList extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +16,6 @@ class CommentList extends Component {
 
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
-    //This code enables us to view, distribute and store images via the virtual server MongoDB. This is the main way of collecting and storring our data which are images and displaying them onto our website to be viewed.
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));
