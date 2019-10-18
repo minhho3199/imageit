@@ -15,6 +15,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+
+
+//This code constructs the creation of 'Posts' that the user who is logged are able to create with the 'Create Post' button.
 router.post("/create", auth, upload.single("image"), (req, res) => {
     const newPost = new Post({
         title: req.body.title,
@@ -22,6 +25,7 @@ router.post("/create", auth, upload.single("image"), (req, res) => {
         contentType: req.file.mimetype,
         author: req.body.author,
     })
+    //This code creates the Pst from within the registered User. This action creates threads registered under the User.
     newPost.save()
         .then(post => {
             User.findByIdAndUpdate({ _id: req.body.author }, { $inc: { postCount: 1 } })
@@ -165,7 +169,7 @@ router.delete("/delete/:postID", auth, (req, res) => {
 
 
 })
-
+//This is the code that begins the upload of Images and converts them to Posts
 router.post("/update/:postID", auth, upload.single("image"), (req, res) => {
     const post = {
         title: req.body.title,
