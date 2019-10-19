@@ -5,9 +5,9 @@ A minimal Reddit/Facebook fusion clone app made using the following technologies
 * [MongoDB](https://www.mongodb.com/)
 
 The members of the team are: 
-Ho Quang Minh - 13701040
-Damian Russo - 13529286
-Young Ki Kim (Doesn't contribute at all)
+* Ho Quang Minh - 13701040
+* Damian Russo - 13529286
+* Young Ki Kim (Doesn't contribute at all)
 ## Table Of Contents
 * [Available Scripts](#available-scripts)
 * [API](#api)
