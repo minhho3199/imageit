@@ -52,7 +52,7 @@ class AllPosts extends Component {
 
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
-      //This code enables us to on our main page 'scroll' indefinately. This will allow the user to only consume bandwith on what they wish to view instead of forcing pages onto them. It also enables a consistant smooth viewing experiance.
+      //This code is used to load posts sorted by either new or popular when the component loads
       componentDidMount() {
             if (this.state.sort === "Sort by: New ") {
                   axios.get(`/api/posts/new?count=${this.state.count}`)
@@ -77,6 +77,7 @@ class AllPosts extends Component {
       }
       //This code is based on the answer by Traversy Media on Youtube
       //See https://www.youtube.com/watch?v=gk_6BKiy6X4
+      //This code enables us to on our main page 'scroll' indefinately. This will allow the user to only consume bandwith on what they wish to view instead of forcing pages onto them. It also enables a consistant smooth viewing experiance.
       loadMore() {
             this.setState({
                   count: this.state.count + 5,

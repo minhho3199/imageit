@@ -11,8 +11,6 @@ import { faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.showMenu = this.showMenu.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
     this.logOut = this.logOut.bind(this);
     this.state = {
       name: '',
@@ -30,8 +28,8 @@ class Navbar extends Component {
     })
   }
 
+  //Add a setTime to localstorage for 1 hour. After 1 hour has passed, the user is logged out automatically.
   componentDidMount() {
-
     const token = localStorage.usertoken;
     var hours = 1;
     var now = new Date().getTime();
@@ -51,20 +49,7 @@ class Navbar extends Component {
       }
     }
   }
-  showMenu(e) {
-    e.preventDefault();
-    this.setState({
-      showMenu: true
-    }, () => {
-      document.addEventListener('click', this.closeMenu);
-    })
-  }
 
-  closeMenu() {
-    this.setState({ showMenu: false }, () => {
-      document.removeEventListener('click', this.closeMenu);
-    });
-  }
   render() {
     const loginRegLink = (
       <div id="navbar-before">

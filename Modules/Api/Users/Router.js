@@ -73,6 +73,7 @@ router.post('/login', (req, res) => {
             })
 })
 
+//This code retrieves the data about the number of posts each user has and sorts them to place in the leaderboard
 router.get('/leaderboards', (req, res) => {
       User.find({}, (err, user) => {
             if(err) {

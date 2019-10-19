@@ -5,6 +5,9 @@ import jwt_decode from 'jwt-decode';
 import axios from 'axios'
 import CommentList from "./CommentList/CommentList"
 
+ //This is one of the main features of the thread. This code allows other users to comment with reactionary images 
+ //and upload them in response to the thread. 
+ //These images are much smaller than the thread and can be replied to in response.
 class Comments extends Component {
     constructor(props) {
         super(props);
@@ -44,7 +47,7 @@ class Comments extends Component {
 
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
-    //This is one of the main features of the thread. This code allows other users to comment with reactionary images and upload them in response to the thread. These images are much smaller than the thread and can be replied to in response.
+    //This code converts the image from data buffer format to Base64 format, which makes it able to render in the website
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));

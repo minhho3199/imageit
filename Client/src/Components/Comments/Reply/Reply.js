@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios'
 
+//This code is used in the same way as posting comments, however we change the variables around to better fit the orting of 'replies' to other comments with reactionary images.
 class Reply extends Component {
     constructor(props) {
         super(props);
@@ -41,7 +42,7 @@ class Reply extends Component {
     }
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
-    //This code is used in the same way as posting comments, however we change the variables around to better fit the orting of 'replies' to other comments with reactionary images.
+    //This code converts the image from data buffer format to Base64 format, which makes it able to render in the website
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));

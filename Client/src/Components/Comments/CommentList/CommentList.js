@@ -16,12 +16,14 @@ class CommentList extends Component {
 
     //This code is based on the tutorial by Colin Reilly on medium.com
     //See https://medium.com/@colinrlly/send-store-and-show-images-with-react-express-and-mongodb-592bc38a9ed
+    //This code converts the image from data buffer format to Base64 format, which makes it able to render in the website    
     arrayBufferToBase64(buffer) {
         var binary = '';
         var bytes = [].slice.call(new Uint8Array(buffer));
         bytes.forEach((b) => binary += String.fromCharCode(b));
         return window.btoa(binary);
     };
+    
     handleReply() {
         this.setState({
             reply: !this.state.reply,

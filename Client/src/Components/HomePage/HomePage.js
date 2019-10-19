@@ -7,6 +7,7 @@ import ScrollUpButton from "react-scroll-up-button";
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Leaderboards from '../Leaderboards/Leaderboards'
+
 class HomePage extends Component {
       constructor(props) {
             super(props);
@@ -20,6 +21,7 @@ class HomePage extends Component {
             if (!("usertoken" in localStorage)) {
                   this.props.history.push("/");
             }
+            //If there is no sort in localStorage, then the default will be sort by new
             if (!("sort" in localStorage)) {
                   this.setState({
                         sort: "Sort by: New "
@@ -31,6 +33,7 @@ class HomePage extends Component {
             }
 
       }
+      //Saves the sort state to localStorage so that it can be used in other components
       handleNewSort() {
             this.setState({
                   sort: "Sort by: New ",
@@ -45,6 +48,7 @@ class HomePage extends Component {
                   localStorage.setItem("sort", this.state.sort);
             })
       }
+      
       //The main code used for displaying the HomePage of the Website. This is where multiple buttons are contained in which transport the user to different sections of the website like uploading, signing out or deleting posts.
       render() {
             return (
